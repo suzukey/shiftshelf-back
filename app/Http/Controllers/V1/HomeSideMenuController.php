@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class HomeSideMenuController extends Controller
 {
     /**
      * Display a listing of the resource.
