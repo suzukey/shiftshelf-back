@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'api', 'namespace' => 'Api'], function() {
-    Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
-        Route::get('/', 'TestController@index');
-    });
+Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
+    Route::get('/', 'TestController@index');
 });
-
