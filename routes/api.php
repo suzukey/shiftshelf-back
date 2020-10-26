@@ -15,5 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
-    Route::get('/', 'TestController@index');
+    Route::get('/message/create', 'UserController@create');
+    Route::put('/message/{id}','UserController@update');
+    Route::delete('/message/{id}','UserController@destroy');
+
+    Route::post('message','GroupController@store');
+    Route::get('/message/create', 'GroupController@create');
+    Route::put('/message/{id}','GroupController@update');
+    Route::delete('/message/{id}','GroupController@destroy');
 });
