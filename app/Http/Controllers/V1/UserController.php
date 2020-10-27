@@ -36,6 +36,11 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //新規作成
+        $user = new \App\User;
+        $user -> username = $request->username;
+        $user -> icon_url = $request ->icon_url;
+
+        $user -> save();
     }
 
     /**
@@ -70,6 +75,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //更新
+        $user = \App\User::findOrFail($id);
+        $user -> username = $request ->username;
+        $user -> icon_url = $request ->icon_url;
+
+        $user ->save();
     }
 
     /**
@@ -81,5 +91,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         //削除
+        $user = \App\User ::find($id);
+        $user -> delete();
     }
 }
