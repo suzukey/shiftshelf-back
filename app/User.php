@@ -15,6 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    // レコード挿入を許可するカラムのこと↓
     protected $fillable = [
         'username', 'icon_url',
     ];
