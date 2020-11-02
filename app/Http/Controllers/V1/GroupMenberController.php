@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
@@ -15,6 +16,8 @@ class GroupMenberController extends Controller
     public function index()
     {
         //一覧
+        // 役職IDの昇順に並び替える
+        $groupmember = \App\GroupMember::orderBy('position_id', 'asc')->get();
     }
 
     /**
@@ -47,6 +50,9 @@ class GroupMenberController extends Controller
     public function show($id)
     {
         //詳細
+        // グループDBの始業時間、終業時間、定休日
+        // 臨時DBの情報
+
     }
 
     /**
@@ -81,5 +87,7 @@ class GroupMenberController extends Controller
     public function destroy($id)
     {
         //削除
+        $groupmember = \App\GroupMember::find($id);
+        $groupmember->delete();
     }
 }

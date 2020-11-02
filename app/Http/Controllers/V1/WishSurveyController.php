@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Http\Controllers\Controller;
 
+// 希望調査
 class WishSurveyController extends Controller
 {
     /**
@@ -15,6 +16,8 @@ class WishSurveyController extends Controller
     public function index()
     {
         //一覧
+        $wishsurveylist = \App\Survey::orderBy('deadline','desc')->get();
+        return json_encode($wishsurveylist,JSON_PRETTY_PRINT);
     }
 
     /**
@@ -47,6 +50,11 @@ class WishSurveyController extends Controller
     public function show($id)
     {
         //詳細
+        // 一般 シフト希望調査詳細
+        // 臨時営業時間の場合は臨時の内容、そうでない場合は通常の営業時間等を返す。
+        // var_dump($wishsurvey ->pluck());
+
+        }
     }
 
     /**
