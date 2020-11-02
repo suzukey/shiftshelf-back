@@ -36,6 +36,12 @@ class PositionAuthorityController extends Controller
     public function store(Request $request)
     {
         //新規作成
+        $PositionAuthority = new \app\PositionAuthority;
+        $PositionAuthority->position_id = $request->position_id;
+        $PositionAuthority->authority_id = $request->authority_id;
+        
+        $PositionAuthority->save();
+
     }
 
     /**
@@ -70,6 +76,11 @@ class PositionAuthorityController extends Controller
     public function update(Request $request, $id)
     {
         //更新
+        $PositionAuthority = \App\PositionAuthority::findOrFail($id);
+        $PositionAuthority -> position_id = $request ->position_id;
+        $PositionAuthority -> authority_id = $request ->authority_id;
+        
+        $PositionAuthority ->save();
     }
 
     /**
@@ -81,5 +92,7 @@ class PositionAuthorityController extends Controller
     public function destroy($id)
     {
         //削除
+        $PositionAuthority = \App\PositionAuthority ::find($id);
+        $PositionAuthority -> delete();
     }
 }
