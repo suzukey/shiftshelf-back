@@ -58,6 +58,8 @@ class GroupController extends Controller
     {
         //詳細
         $group = Task::find($id);
+
+        return json_encode($group,JSON_PRETTY_PRINT);
     }
 
     /**

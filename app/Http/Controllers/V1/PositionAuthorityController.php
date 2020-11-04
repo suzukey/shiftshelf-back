@@ -54,6 +54,8 @@ class PositionAuthorityController extends Controller
     {
         //詳細
         $PositionAuthority = position_authority::find($id);
+
+        return json_encode($PositionAuthority,JSON_PRETTY_PRINT);
     }
 
     /**
