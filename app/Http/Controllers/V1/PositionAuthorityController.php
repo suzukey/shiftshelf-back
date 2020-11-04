@@ -53,6 +53,7 @@ class PositionAuthorityController extends Controller
     public function show($id)
     {
         //詳細
+        $PositionAuthority = position_authority::find($id);
     }
 
     /**
