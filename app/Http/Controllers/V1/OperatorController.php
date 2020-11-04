@@ -3,7 +3,9 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\GroupMember;
 use App\Http\Controllers\Controller;
+use finfo;
 
 class OperatorController extends Controller
 {
@@ -47,6 +49,9 @@ class OperatorController extends Controller
     public function show($id)
     {
         //詳細
+        $operater = GroupMember::find($id);
+        return($operater -> position_id);
+
     }
 
     /**
