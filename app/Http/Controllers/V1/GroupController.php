@@ -57,7 +57,7 @@ class GroupController extends Controller
     public function show($id)
     {
         //詳細
-        $group = \App\Group ::pluck/*←これを作りたい*/($id);
+        $group = Task::find($id);
     }
 
     /**
