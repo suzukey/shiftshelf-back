@@ -49,9 +49,6 @@ class GroupMenberController extends Controller
      */
     public function show($id)
     {
-        //詳細
-        // グループDBの始業時間、終業時間、定休日
-        // 臨時DBの情報
 
     }
 
