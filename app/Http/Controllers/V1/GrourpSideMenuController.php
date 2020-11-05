@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\GroupSideMenu;
 use App\Http\Controllers\Controller;
 
 class GroupSideMenuController extends Controller
@@ -47,6 +48,9 @@ class GroupSideMenuController extends Controller
     public function show($id)
     {
         //詳細
+        $user = \App\User::table('user')->get();
+        $group = \App\Group::table('user')->get();
+        $confirm = \App\Confirm::table('user')->get();
     }
 
     /**
