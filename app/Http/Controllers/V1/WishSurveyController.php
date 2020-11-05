@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Http\Controllers\Controller;
+use App\Survey;
+use App\Temporary;
 
 // 希望調査
 class WishSurveyController extends Controller
@@ -52,9 +54,17 @@ class WishSurveyController extends Controller
         //詳細
         // 一般 シフト希望調査詳細
         // 臨時営業時間の場合は臨時の内容、そうでない場合は通常の営業時間等を返す。
-        // var_dump($wishsurvey ->pluck());
-
+        $temporary = Temporary::find($id);
+        if($temporary->is_holiday == true){
+            $openning_hour=$temporary->opening_hour;
+            $closed_hour = $temporary->closed_hour;
+            echo $openning_hour;
+            echo $closed_hour;
         }
+        else{
+            // 通常営業の開始、終了時刻返す
+        }
+
     }
 
     /**
