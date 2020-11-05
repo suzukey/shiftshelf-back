@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Article;
+use App\Confirm;
 use App\Http\Controllers\Controller;
 
 class MakeShiftController extends Controller

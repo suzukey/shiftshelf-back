@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Article;
+use App\Group;
 use App\Http\Controllers\Controller;
 
 class GroupController extends Controller
@@ -43,7 +43,7 @@ class GroupController extends Controller
         $group->regular_opening_hour = $request->regular_closed_hour;
         $group->regular_closed_hour = $request->regular_closed_hour;
         $group->regular_holiday = $request->regular_holiday;
-        
+
         $group->save();
 
     }
@@ -57,7 +57,7 @@ class GroupController extends Controller
     public function show($id)
     {
         //詳細
-        $group = Task::find($id);
+        $group = Group::find($id);
     }
 
     /**
