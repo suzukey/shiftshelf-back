@@ -16,6 +16,7 @@ class PositionController extends Controller
     {
         //一覧
         $position = \App\Position::orderBy('position_id', 'asc')->get();
+        return json_encode($position,JSON_PRETTY_PRINT);
     }
 
     /**
