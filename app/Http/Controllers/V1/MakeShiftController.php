@@ -2,10 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use App\Article;
-=======
->>>>>>> 925017b67804c249616296c8f6ffc8ebaf00d433
 use App\Confirm;
 use App\Http\Controllers\Controller;
 
