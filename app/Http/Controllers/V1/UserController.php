@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Article;
+use App\User;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller

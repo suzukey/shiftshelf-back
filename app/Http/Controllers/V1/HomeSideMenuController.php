@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Article;
+use App\User;
 use App\Http\Controllers\Controller;
 
 class HomeSideMenuController extends Controller
@@ -47,6 +47,19 @@ class HomeSideMenuController extends Controller
     public function show($id)
     {
         //詳細
+        $userinfo = \App\User::find($id);
+        $userid = $userinfo -> id;
+        $username = $userinfo -> username ;
+        $usericon = $userinfo -> icon_url ;
+
+        $usergroup = \App\User::with(['GroupMember' => function($q){
+            $q->where('user_id', '=', '$userid');
+        }])->get();
+        $groupinfo = \App\GroupMember::with(['Group' => function($q2){
+            $q2->where('group_id','=','$userid');
+        }])->get();
+
+        echo $username , $usericon , $groupinfo;
     }
 
     /**

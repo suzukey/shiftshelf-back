@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Article;
+use App\GroupMember;
 use App\Http\Controllers\Controller;
 
 class GroupMenberController extends Controller
