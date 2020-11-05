@@ -2,6 +2,10 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
+=======
+use App\Article;
+>>>>>>> 0eca98fe6db1670801b2d6dda0381c2ed989c540
 use App\Group;
 use App\Http\Controllers\Controller;
 
@@ -57,7 +61,13 @@ class GroupController extends Controller
     public function show($id)
     {
         //詳細
+<<<<<<< HEAD
         $group = Group::find($id);
+=======
+        $group = Task::find($id);
+
+        return json_encode($group,JSON_PRETTY_PRINT);
+>>>>>>> 0eca98fe6db1670801b2d6dda0381c2ed989c540
     }
 
     /**

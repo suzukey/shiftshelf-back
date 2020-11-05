@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\PositionAuthority;
 use App\Http\Controllers\Controller;
 
 class PositionAuthorityController extends Controller
@@ -54,6 +55,8 @@ class PositionAuthorityController extends Controller
     {
         //詳細
         $PositionAuthority = position_authority::find($id);
+
+        return json_encode($PositionAuthority,JSON_PRETTY_PRINT);
     }
 
     /**
