@@ -2,10 +2,6 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-=======
-use App\Article;
->>>>>>> 0eca98fe6db1670801b2d6dda0381c2ed989c540
 use App\Group;
 use App\Http\Controllers\Controller;
 
@@ -47,7 +43,6 @@ class GroupController extends Controller
         $group->regular_opening_hour = $request->regular_closed_hour;
         $group->regular_closed_hour = $request->regular_closed_hour;
         $group->regular_holiday = $request->regular_holiday;
-
         $group->save();
 
     }
@@ -61,13 +56,8 @@ class GroupController extends Controller
     public function show($id)
     {
         //詳細
-<<<<<<< HEAD
-        $group = Group::find($id);
-=======
-        $group = Task::find($id);
-
+        $group = Group::findOrFail($id);
         return json_encode($group,JSON_PRETTY_PRINT);
->>>>>>> 0eca98fe6db1670801b2d6dda0381c2ed989c540
     }
 
     /**
@@ -97,7 +87,6 @@ class GroupController extends Controller
         $group -> regular_opening_hour = $request ->regular_opening_hour;
         $group -> regular_closed_hour = $request ->regular_closed_hour;
         $group -> regular_holiday = $request ->regular_holiday;
-
         $group ->save();
     }
 
@@ -110,7 +99,7 @@ class GroupController extends Controller
     public function destroy($id)
     {
         //削除
-        $group = \App\Group ::find($id);
+        $group = \App\Group ::findOrFail($id);
         $group -> delete();
     }
 }
