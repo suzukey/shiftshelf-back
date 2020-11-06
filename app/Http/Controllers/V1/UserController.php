@@ -39,7 +39,6 @@ class UserController extends Controller
         $user = new \App\User;
         $user -> username = $request->username;
         $user -> icon_url = $request ->icon_url;
-
         $user -> save();
     }
 
@@ -75,10 +74,10 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //更新
+        // findOrFail：モデルが見つからない時に、lluminate\Database\Eloquent\ModelNotFoundException例外を投げる
         $user = \App\User::findOrFail($id);
         $user -> username = $request ->username;
         $user -> icon_url = $request ->icon_url;
-
         $user ->save();
     }
 
@@ -91,7 +90,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         //削除
-        $user = \App\User ::find($id);
+        $user = \App\User ::findOrFail($id);
         $user -> delete();
     }
 }
