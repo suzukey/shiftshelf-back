@@ -43,7 +43,6 @@ class GroupController extends Controller
         $group->regular_opening_hour = $request->regular_closed_hour;
         $group->regular_closed_hour = $request->regular_closed_hour;
         $group->regular_holiday = $request->regular_holiday;
-
         $group->save();
 
     }
@@ -57,8 +56,7 @@ class GroupController extends Controller
     public function show($id)
     {
         //詳細
-        $group = Group::find($id);
-
+        $group = Group::findOrFail($id);
         return json_encode($group,JSON_PRETTY_PRINT);
     }
 
@@ -89,7 +87,6 @@ class GroupController extends Controller
         $group -> regular_opening_hour = $request ->regular_opening_hour;
         $group -> regular_closed_hour = $request ->regular_closed_hour;
         $group -> regular_holiday = $request ->regular_holiday;
-
         $group ->save();
     }
 
@@ -102,7 +99,7 @@ class GroupController extends Controller
     public function destroy($id)
     {
         //削除
-        $group = \App\Group ::find($id);
+        $group = \App\Group ::findOrFail($id);
         $group -> delete();
     }
 }
