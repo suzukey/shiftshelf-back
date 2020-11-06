@@ -7,8 +7,7 @@ use App\User;
 use App\Confirm;
 use App\Survey;
 use App\GroupMember;
-use App\Survey;
-use App\PositionAuthority;]
+use App\PositionAuthority;
 use App\Authority;
 use App\Http\Controllers\Controller;
 
