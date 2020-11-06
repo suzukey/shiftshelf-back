@@ -3,7 +3,13 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Article;
-use App\GroupSideMenu;
+use App\User;
+use App\Confirm;
+use App\Survey;
+use App\GroupMember;
+use App\Survey;
+use App\PositionAuthority;]
+use App\Authority;
 use App\Http\Controllers\Controller;
 
 class GroupSideMenuController extends Controller
@@ -48,9 +54,25 @@ class GroupSideMenuController extends Controller
     public function show($id)
     {
         //詳細
-        $user = \App\User::table('user')->get();
-        $group = \App\Group::table('user')->get();
-        $confirm = \App\Confirm::table('user')->get();
+        $userinfo = \App\User::find($id);
+        $userid = $userinfo -> id;
+        $username = $userinfo -> username ;
+        $usericon = $userinfo -> icon_url ;
+
+        $groupname = \Group::table('groupname')->get();
+        
+        $surveyid = \Survey::table('id')->get();
+        $surveyname = \Survey::table('recruitname')->get();
+        
+        $confirmstatus = \Confirm::table('status')->get();
+
+        $group_member_info = \App\Group_Member::find($userid);
+        $positionid = $group_member_info -> position_id ;
+        $position_authority_info = \App\PositionAuthority::find($positionid);
+        $authority_id = $position_authority_info -> authority_id ;
+        
+        echo $username ,$usericon ,$groupname ,$surveyid ,$surveyname ,$confirmstatus ,$authority_id;
+        
     }
 
     /**
