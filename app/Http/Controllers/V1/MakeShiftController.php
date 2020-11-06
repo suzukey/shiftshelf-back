@@ -40,7 +40,6 @@ class MakeShiftController extends Controller
         //新規作成
         $makeshift = new \App\Confirm();
         $makeshift -> date = $request->date;
-
         $makeshift -> save();
     }
 
@@ -78,7 +77,6 @@ class MakeShiftController extends Controller
         //更新
         $updateshift = \App\Confirm::findOrFail($id);
         $updateshift -> date = $request->date;
-
         $updateshift ->save();
     }
 
@@ -91,7 +89,7 @@ class MakeShiftController extends Controller
     public function destroy($id)
     {
         //削除
-        $deleteshift = \App\Confirm ::find($id);
+        $deleteshift = \App\Confirm ::findOrFail($id);
         $deleteshift -> delete();
     }
 }
