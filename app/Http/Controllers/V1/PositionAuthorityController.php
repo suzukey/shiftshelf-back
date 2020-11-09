@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\PositionAuthority;
 use App\Http\Controllers\Controller;
 
 class PositionAuthorityController extends Controller
@@ -36,6 +37,11 @@ class PositionAuthorityController extends Controller
     public function store(Request $request)
     {
         //新規作成
+        $PositionAuthority = new \app\PositionAuthority;
+        $PositionAuthority->position_id = $request->position_id;
+        $PositionAuthority->authority_id = $request->authority_id;
+        $PositionAuthority->save();
+
     }
 
     /**
@@ -47,6 +53,8 @@ class PositionAuthorityController extends Controller
     public function show($id)
     {
         //詳細
+        $PositionAuthority = PositionAuthority::findOrFail($id);
+        return json_encode($PositionAuthority,JSON_PRETTY_PRINT);
     }
 
     /**
@@ -70,6 +78,10 @@ class PositionAuthorityController extends Controller
     public function update(Request $request, $id)
     {
         //更新
+        $PositionAuthority = \App\PositionAuthority::findOrFail($id);
+        $PositionAuthority -> position_id = $request ->position_id;
+        $PositionAuthority -> authority_id = $request ->authority_id;
+        $PositionAuthority ->save();
     }
 
     /**
@@ -81,5 +93,7 @@ class PositionAuthorityController extends Controller
     public function destroy($id)
     {
         //削除
+        $PositionAuthority = \App\PositionAuthority ::findOrFail($id);
+        $PositionAuthority -> delete();
     }
 }

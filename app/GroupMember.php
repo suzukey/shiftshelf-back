@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class GroupMember extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,5 +12,6 @@ class Group extends Model
      * @var array
      */
     protected $fillable = [
-        'groupname', 'icon_url','regular_opening_hour','regular_closed_hour','regular_holiday',   ];
+        'position_id',
+    ];
 }

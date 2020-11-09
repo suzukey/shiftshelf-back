@@ -2,8 +2,9 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Article;
+use App\User;
 use App\Http\Controllers\Controller;
+use finfo;
 
 class OperatorController extends Controller
 {
@@ -47,6 +48,8 @@ class OperatorController extends Controller
     public function show($id)
     {
         //詳細
+        $operater = \App\GroupMember::where('userid', '=' ,'id')->get();
+        return($operater -> position_id);
     }
 
     /**

@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Article;
+use App\GroupMember;
 use App\Http\Controllers\Controller;
 
 class GroupMenberController extends Controller
@@ -15,6 +16,9 @@ class GroupMenberController extends Controller
     public function index()
     {
         //一覧
+        // 役職IDの昇順に並び替える
+        $groupmember = \App\GroupMember::orderBy('position_id', 'asc')->get();
+        return json_encode($groupmember,JSON_PRETTY_PRINT);
     }
 
     /**
@@ -36,6 +40,9 @@ class GroupMenberController extends Controller
     public function store(Request $request)
     {
         //新規作成
+        // $makegroupmember = new \App\GroupMember();
+        // $makegroupmember -> user_id = $request->user_id;
+        // $makegroupmember -> save();
     }
 
     /**
@@ -46,7 +53,7 @@ class GroupMenberController extends Controller
      */
     public function show($id)
     {
-        //詳細
+
     }
 
     /**
@@ -81,5 +88,7 @@ class GroupMenberController extends Controller
     public function destroy($id)
     {
         //削除
+        $groupmember = \App\GroupMember::find($id);
+        $groupmember->delete();
     }
 }
