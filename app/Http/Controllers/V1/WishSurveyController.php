@@ -38,6 +38,14 @@ class WishSurveyController extends Controller
     public function store(Request $request)
     {
         //新規作成
+        $makesurvey = new \App\Survey();
+        $makesurvey -> recruitname = $request->recruitname;
+        $makesurvey -> start_date = $request ->start_date;
+        $makesurvey -> end_date = $request->end_date;
+        $makesurvey -> recruitmentstarted = $request ->recruitmentstarted;
+        $makesurvey -> deadline = $request ->deadline;
+        $makesurvey -> save();
+        // 募集の開始日はボタンを押した日？
     }
 
     /**
@@ -63,8 +71,7 @@ class WishSurveyController extends Controller
             $openning_hour=$regular->regular_opening_hour;
             $closed_hour=$regular->regular_closed_hour;
         }
-        echo $openning_hour;
-        echo $closed_hour;
+        return array($openning_hour,$closed_hour);
     }
 
     /**
@@ -88,6 +95,9 @@ class WishSurveyController extends Controller
     public function update(Request $request, $id)
     {
         //更新
+        $userconfirm = new \App\Confirm();
+        $userconfirm -> recruitname = $request->status;
+        $userconfirm -> save();
     }
 
     /**

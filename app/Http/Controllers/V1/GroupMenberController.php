@@ -18,6 +18,7 @@ class GroupMenberController extends Controller
         //一覧
         // 役職IDの昇順に並び替える
         $groupmember = \App\GroupMember::orderBy('position_id', 'asc')->get();
+        return json_encode($groupmember,JSON_PRETTY_PRINT);
     }
 
     /**
@@ -39,6 +40,9 @@ class GroupMenberController extends Controller
     public function store(Request $request)
     {
         //新規作成
+        // $makegroupmember = new \App\GroupMember();
+        // $makegroupmember -> user_id = $request->user_id;
+        // $makegroupmember -> save();
     }
 
     /**

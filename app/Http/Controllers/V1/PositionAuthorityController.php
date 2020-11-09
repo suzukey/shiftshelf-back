@@ -40,7 +40,6 @@ class PositionAuthorityController extends Controller
         $PositionAuthority = new \app\PositionAuthority;
         $PositionAuthority->position_id = $request->position_id;
         $PositionAuthority->authority_id = $request->authority_id;
-        
         $PositionAuthority->save();
 
     }
@@ -54,8 +53,7 @@ class PositionAuthorityController extends Controller
     public function show($id)
     {
         //詳細
-        $PositionAuthority = position_authority::find($id);
-
+        $PositionAuthority = PositionAuthority::findOrFail($id);
         return json_encode($PositionAuthority,JSON_PRETTY_PRINT);
     }
 
@@ -83,7 +81,6 @@ class PositionAuthorityController extends Controller
         $PositionAuthority = \App\PositionAuthority::findOrFail($id);
         $PositionAuthority -> position_id = $request ->position_id;
         $PositionAuthority -> authority_id = $request ->authority_id;
-        
         $PositionAuthority ->save();
     }
 
@@ -96,7 +93,7 @@ class PositionAuthorityController extends Controller
     public function destroy($id)
     {
         //削除
-        $PositionAuthority = \App\PositionAuthority ::find($id);
+        $PositionAuthority = \App\PositionAuthority ::findOrFail($id);
         $PositionAuthority -> delete();
     }
 }
