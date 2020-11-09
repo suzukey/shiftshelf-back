@@ -14,7 +14,7 @@ class CreatePositionTable extends Migration
     public function up()
     {
         Schema::create('position', function (Blueprint $table) {
-            $table->String('id')->autoIncrement(); // 役職ID
+            $table->String('id'); // 役職ID
             $table->String('name'); // 役職名
             $table->int('sequence'); // 順序
         });

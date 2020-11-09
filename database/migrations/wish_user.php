@@ -17,8 +17,8 @@ class CreateWishUserTable extends Migration
             $table->String('id', 10); // シフト希望ユーザーID
             $table->String('wish_id', 10); // シフト希望ID
             $table->String('user_id', 10); // ユーザーID
-            $table->time('start_id'); // 開始時刻
-            $table->time('end_at'); // 終了時刻
+            $table->time('start_id')->nullable(); // 開始時刻
+            $table->time('end_at')->nullable(); // 終了時刻
         });
     }
 
