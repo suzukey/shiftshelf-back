@@ -15,9 +15,9 @@ class CreateOwnersTable extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->string('id', 10); // ユーザーID
-            $table->string("username", 30); // ユーザー名
-            $table->string("icon_url"); // ユーザーアイコン
-            $table->string("email", 256)->nullable(); //メールアドレス
+            $table->string('username', 30); // ユーザー名
+            $table->string('icon_url')->nullable(); // ユーザーアイコン
+            $table->string('email', 256); //メールアドレス
         });
     }
 
