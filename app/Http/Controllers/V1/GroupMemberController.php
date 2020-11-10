@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\GroupMember;
 use App\Http\Controllers\Controller;
 
-class GroupMenberController extends Controller
+class GroupMemberController extends Controller
 {
     /**
      * Display a listing of the resource.
