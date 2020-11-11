@@ -14,18 +14,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('user', 'UserController@store');
+Route::patch('user', 'UserController@update');
+Route::delete('user', 'UserController@destroy');
 
-Route::group(['middleware' => ['api']], function () {
-    Route::resource('User', 'Api\UserController', ['except' => ['create', 'edit']]);
+Route::get('group', 'GroupController@show');
+Route::post('group', 'GroupController@store');
+Route::patch('group', 'GroupController@update');
+Route::delete('group', 'GroupController@destroy');
 
+Route::get('groupmember', 'GroupMemberController@index');
+Route::post('groupmember', 'GroupMemberController@store');
+Route::delete('groupmember', 'GroupMemberController@destroy');
 
-    // Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
-    //     Route::get('/message/create', 'UserController@create');
-    //     Route::put('/message/{id}','UserController@update');
-    //     Route::delete('/message/{id}','UserController@destroy');
+Route::get('makeshift', 'MakeShiftController@index');
+Route::post('makeshift', 'MakeShiftController@store');
+Route::patch('makeshift', 'MakeShiftController@update');
+Route::delete('makeshift', 'MakeShiftController@destroy');
 
-    //     Route::post('message','GroupController@store');
-    //     Route::get('/message/create', 'GroupController@create');
-    //     Route::put('/message/{id}','GroupController@update');
-    //     Route::delete('/message/{id}','GroupController@destroy');
-});
+Route::get('wishsurvey', 'WishSurveyController@index');
+Route::get('wishsurvey', 'WishSurveyController@show');
+Route::patch('wishsurvey', 'WishSurveyController@update');
+
+Route::get('operator', 'OperatorController@show');
+
+Route::get('homesidemenu', 'HomeSideMenuController@show');
+
+Route::get('groupsidemenu', 'GroupSideMenuController@show');
+
+Route::get('Calendar', 'CalendarController@show');
+
+Route::get('share', 'SharController@show');
+
+Route::get('wishshift', 'WishShiftController@index');
+
+Route::get('position', 'PositionController@index');
+?>
