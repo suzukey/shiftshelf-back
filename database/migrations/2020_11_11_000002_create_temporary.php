@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConfirmTable extends Migration
+class CreateTemporary extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateConfirmTable extends Migration
      */
     public function up()
     {
-        Schema::create('confirm', function (Blueprint $table) {
-            $table->String('id', 10); // 確定シフトID
+        Schema::create('temporary', function (Blueprint $table) {
+            $table->String('id', 10); // 臨時ID
             $table->String('recruited_id', 10); // シフト募集ID
             $table->date('date'); // 日付
-            $table->booleam('status'); // 確定ステータス
+            $table->boolean('is_holiday')->nullable(); // 臨時休業
+            $table->time('opening_hour')->nullable(); // 臨時休業時間
+            $table->time('closed_hour')->nullable(); // 臨時休業時間
         });
     }
 
@@ -28,6 +30,6 @@ class CreateConfirmTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('confirm');
+        Schema::dropIfExists('temporary');
     }
 }

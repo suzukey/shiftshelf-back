@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWishTable extends Migration
+class CreatePosition extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateWishTable extends Migration
      */
     public function up()
     {
-        Schema::create('wish', function (Blueprint $table) {
-            $table->String('id', 10); // シフト希望ID
-            $table->Stirng('recruited_id', 10); // シフト募集ID
-            $table->date('date'); // 日付
+        Schema::create('position', function (Blueprint $table) {
+            $table->String('id'); // 役職ID
+            $table->String('name'); // 役職名
+            $table->int('sequence'); // 順序
         });
     }
 
@@ -27,6 +27,6 @@ class CreateWishTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wish');
+        Schema::dropIfExists('position');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGroupMemberTable extends Migration
+class CreateWishUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateGroupMemberTable extends Migration
      */
     public function up()
     {
-        Schema::create('group_member', function (Blueprint $table) {
-            $table->String('id', 10); // グループメンバーID
+        Schema::create('wish_user', function (Blueprint $table) {
+            $table->String('id', 10); // シフト希望ユーザーID
+            $table->String('wish_id', 10); // シフト希望ID
             $table->String('user_id', 10); // ユーザーID
-            $table->String('group_id', 10); // グループID
-            $table->String('position_id', 10); // 役職ID
+            $table->time('start_id')->nullable(); // 開始時刻
+            $table->time('end_at')->nullable(); // 終了時刻
         });
     }
 
@@ -28,6 +29,6 @@ class CreateGroupMemberTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group');
+        Schema::dropIfExists('wish_user');
     }
 }

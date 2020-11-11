@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePositionTable extends Migration
+class CreatePositionAuthority extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePositionTable extends Migration
      */
     public function up()
     {
-        Schema::create('position', function (Blueprint $table) {
-            $table->String('id'); // 役職ID
-            $table->String('name'); // 役職名
-            $table->int('sequence'); // 順序
+        Schema::create('position_authority', function (Blueprint $table) {
+            $table->String('id', 10); // 役職権限ID
+            $table->String('position_id', 10); // 役職ID
+            $table->String('authority_id', 10); // 権限ID
         });
     }
 
@@ -27,6 +27,6 @@ class CreatePositionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('position');
+        Schema::dropIfExists('position_authority');
     }
 }

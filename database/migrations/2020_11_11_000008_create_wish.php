@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePositionAuthorityTable extends Migration
+class CreateWish extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePositionAuthorityTable extends Migration
      */
     public function up()
     {
-        Schema::create('position_authority', function (Blueprint $table) {
-            $table->String('id', 10); // 役職権限ID
-            $table->String('position_id', 10); // 役職ID
-            $table->String('authority_id', 10); // 権限ID
+        Schema::create('wish', function (Blueprint $table) {
+            $table->String('id', 10); // シフト希望ID
+            $table->Stirng('recruited_id', 10); // シフト募集ID
+            $table->date('date'); // 日付
         });
     }
 
@@ -27,6 +27,6 @@ class CreatePositionAuthorityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('position_authority');
+        Schema::dropIfExists('wish');
     }
 }
