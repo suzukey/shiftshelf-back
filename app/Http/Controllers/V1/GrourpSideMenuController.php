@@ -2,13 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Article;
 use App\User;
-use App\Confirm;
-use App\Survey;
-use App\GroupMember;
-use App\PositionAuthority;
-use App\Authority;
 use App\Http\Controllers\Controller;
 
 class GroupSideMenuController extends Controller
@@ -58,11 +52,14 @@ class GroupSideMenuController extends Controller
         $username = $userinfo -> username ;
         $usericon = $userinfo -> icon_url ;
 
+        $groupinfo = new \App\Group();
         $groupname = \Group::table('groupname')->get();
         
+        $surveyinfo = new \App\Survey();
         $surveyid = \Survey::table('id')->get();
         $surveyname = \Survey::table('recruitname')->get();
         
+        $confirminfo = new \App\Confirm();
         $confirmstatus = \Confirm::table('status')->get();
 
         $group_member_info = \App\Group_Member::find($userid);
