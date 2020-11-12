@@ -18,7 +18,7 @@ class GroupMemberController extends Controller
         //一覧
         // 役職IDの昇順に並び替える
         $groupmember = \App\GroupMember::orderBy('position_id', 'asc')->get();
-        return json_encode($groupmember,JSON_PRETTY_PRINT);
+        return json_encode($groupmember, JSON_PRETTY_PRINT);
     }
 
     /**
@@ -53,7 +53,6 @@ class GroupMemberController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -77,6 +76,7 @@ class GroupMemberController extends Controller
     public function update(Request $request, $id)
     {
         //更新
+
     }
 
     /**

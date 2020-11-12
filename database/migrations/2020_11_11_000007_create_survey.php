@@ -14,13 +14,13 @@ class CreateSurvey extends Migration
     public function up()
     {
         Schema::create('survey', function (Blueprint $table) {
-            $table->String('id', 10); // シフト募集ID
-            $table->String('recruitname', 10); // 希望調査名
+            $table->string('id', 10); // シフト募集ID
+            $table->string('recruitname', 10); // 希望調査名
             $table->date('start_date')->nullable(); // 開始日
             $table->date('end_date')->nullable(); //　終了日
             $table->date('recruitmentstarted'); // 募集開始日
             $table->datetime('deadline'); // 募集締め切り日
-            $table->String('group_id', 10); // グループID
+            $table->string('group_id', 10); // グループID
         });
     }
 

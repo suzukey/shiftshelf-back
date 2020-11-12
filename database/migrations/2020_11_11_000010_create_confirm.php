@@ -14,10 +14,10 @@ class CreateConfirm extends Migration
     public function up()
     {
         Schema::create('confirm', function (Blueprint $table) {
-            $table->String('id', 10); // 確定シフトID
-            $table->String('recruited_id', 10); // シフト募集ID
+            $table->string('id', 10); // 確定シフトID
+            $table->string('recruited_id', 10); // シフト募集ID
             $table->date('date'); // 日付
-            $table->booleam('status'); // 確定ステータス
+            $table->boolean('status'); // 確定ステータス
         });
     }
 

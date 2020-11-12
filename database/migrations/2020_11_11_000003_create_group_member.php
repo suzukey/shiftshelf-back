@@ -14,10 +14,10 @@ class CreateGroupMember extends Migration
     public function up()
     {
         Schema::create('group_member', function (Blueprint $table) {
-            $table->String('id', 10); // グループメンバーID
-            $table->String('user_id', 10); // ユーザーID
-            $table->String('group_id', 10); // グループID
-            $table->String('position_id', 10); // 役職ID
+            $table->string('id', 10); // グループメンバーID
+            $table->string('user_id', 10); // ユーザーID
+            $table->string('group_id', 10); // グループID
+            $table->string('position_id', 10); // 役職ID
         });
     }
 
