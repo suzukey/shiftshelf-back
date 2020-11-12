@@ -13,40 +13,41 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
+    Route::post('user', 'UserController@store');
+    Route::patch('user', 'UserController@update');
+    Route::delete('user', 'UserController@destroy');
 
-Route::post('user', 'UserController@store');
-Route::patch('user', 'UserController@update');
-Route::delete('user', 'UserController@destroy');
+    Route::get('group', 'GroupController@show');
+    Route::post('group', 'GroupController@store');
+    Route::patch('group', 'GroupController@update');
+    Route::delete('group', 'GroupController@destroy');
 
-Route::get('group', 'GroupController@show');
-Route::post('group', 'GroupController@store');
-Route::patch('group', 'GroupController@update');
-Route::delete('group', 'GroupController@destroy');
+    Route::get('groupmember', 'GroupMemberController@index');
+    Route::post('groupmember', 'GroupMemberController@store');
+    Route::delete('groupmember', 'GroupMemberController@destroy');
 
-Route::get('groupmember', 'GroupMemberController@index');
-Route::post('groupmember', 'GroupMemberController@store');
-Route::delete('groupmember', 'GroupMemberController@destroy');
+    Route::get('makeshift', 'MakeShiftController@index');
+    Route::post('makeshift', 'MakeShiftController@store');
+    Route::patch('makeshift', 'MakeShiftController@update');
+    Route::delete('makeshift', 'MakeShiftController@destroy');
 
-Route::get('makeshift', 'MakeShiftController@index');
-Route::post('makeshift', 'MakeShiftController@store');
-Route::patch('makeshift', 'MakeShiftController@update');
-Route::delete('makeshift', 'MakeShiftController@destroy');
+    Route::get('wishsurvey', 'WishSurveyController@index');
+    Route::get('wishsurvey', 'WishSurveyController@show');
+    Route::patch('wishsurvey', 'WishSurveyController@update');
 
-Route::get('wishsurvey', 'WishSurveyController@index');
-Route::get('wishsurvey', 'WishSurveyController@show');
-Route::patch('wishsurvey', 'WishSurveyController@update');
+    Route::get('operator', 'OperatorController@show');
 
-Route::get('operator', 'OperatorController@show');
+    Route::get('homesidemenu', 'HomeSideMenuController@show');
 
-Route::get('homesidemenu', 'HomeSideMenuController@show');
+    Route::get('groupsidemenu', 'GroupSideMenuController@show');
 
-Route::get('groupsidemenu', 'GroupSideMenuController@show');
+    Route::get('Calendar', 'CalendarController@show');
 
-Route::get('Calendar', 'CalendarController@show');
+    Route::get('share', 'SharController@show');
 
-Route::get('share', 'SharController@show');
+    Route::get('wishshift', 'WishShiftController@index');
 
-Route::get('wishshift', 'WishShiftController@index');
-
-Route::get('position', 'PositionController@index');
+    Route::get('position', 'PositionController@index');
+});
 ?>

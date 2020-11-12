@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
 use App\User;
