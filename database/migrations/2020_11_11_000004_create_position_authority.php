@@ -14,9 +14,9 @@ class CreatePositionAuthority extends Migration
     public function up()
     {
         Schema::create('position_authority', function (Blueprint $table) {
-            $table->String('id', 10); // 役職権限ID
-            $table->String('position_id', 10); // 役職ID
-            $table->String('authority_id', 10); // 権限ID
+            $table->string('id', 10); // 役職権限ID
+            $table->string('position_id', 10); // 役職ID
+            $table->string('authority_id', 10); // 権限ID
         });
     }
 

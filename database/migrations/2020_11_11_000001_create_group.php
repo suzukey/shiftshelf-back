@@ -14,9 +14,9 @@ class CreateGroup extends Migration
     public function up()
     {
         Schema::create('group', function (Blueprint $table) {
-            $table->String('id',10); // グループID
-            $table->String('groupname',60); // グループ名
-            $table->String('icon_url')->nullable(); // グループアイコン
+            $table->string('id',10); // グループID
+            $table->string('groupname',60); // グループ名
+            $table->string('icon_url')->nullable(); // グループアイコン
             $table->time('regular_opening_hour')->nullable(); // 始業時間
             $table->time('regular_closed_hour')->nullable(); // 就業時間
             $table->binary('regular_holiday', 8)->nullable(); // 定休日
