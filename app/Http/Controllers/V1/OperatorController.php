@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Users;
 use App\Http\Controllers\Controller;
 use finfo;
 
@@ -48,7 +48,7 @@ class OperatorController extends Controller
     public function show($id)
     {
         //詳細
-        $operater = \App\GroupMember::where('userid', '=' ,'id')->get();
+        $operater = \App\GroupMembers::where('userid', '=' ,'id')->get();
         return($operater -> position_id);
     }
 

@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
-use App\Survey;
+use App\Surveies;
 use App\Http\Controllers\Controller;
 
 class WishShiftController extends Controller
@@ -15,7 +15,7 @@ class WishShiftController extends Controller
     public function index()
     {
         //一覧
-        $surveylist = \App\Survey::orderBy('deadline', 'asc')->get();
+        $surveylist = \App\Surveies::orderBy('deadline', 'asc')->get();
         return json_encode($surveylist,JSON_PRETTY_PRINT);
     }
 

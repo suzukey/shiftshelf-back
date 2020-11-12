@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
-use App\Article;
+use App\Articles;
 use App\Http\Controllers\Controller;
 
 class ShareController extends Controller

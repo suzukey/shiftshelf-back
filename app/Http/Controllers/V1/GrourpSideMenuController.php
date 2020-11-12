@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Users;
 use App\Http\Controllers\Controller;
 
 class GroupSideMenuController extends Controller
@@ -47,28 +47,27 @@ class GroupSideMenuController extends Controller
     public function show($id)
     {
         //詳細
-        $userinfo = \App\User::find($id);
+        $userinfo = \App\Users::find($id);
         $userid = $userinfo -> id;
         $username = $userinfo -> username ;
         $usericon = $userinfo -> icon_url ;
 
-        $groupinfo = new \App\Group();
-        $groupname = \Group::table('groupname')->get();
-        
-        $surveyinfo = new \App\Survey();
-        $surveyid = \Survey::table('id')->get();
-        $surveyname = \Survey::table('recruitname')->get();
-        
-        $confirminfo = new \App\Confirm();
-        $confirmstatus = \Confirm::table('status')->get();
+        $groupinfo = new \App\Groups();
+        $groupname = \App\Groups::table('groupname')->get();
 
-        $group_member_info = \App\Group_Member::find($userid);
+        $surveyinfo = new \App\Surveies();
+        $surveyid = \App\Surveies::table('id')->get();
+        $surveyname = \App\Surveies::table('recruitname')->get();
+
+        $confirminfo = new \App\Confirms();
+        $confirmstatus = \App\Confirms::table('status')->get();
+
+        $group_member_info = \App\GroupMembers::find($userid);
         $positionid = $group_member_info -> position_id ;
-        $position_authority_info = \App\PositionAuthority::find($positionid);
+        $position_authority_info = \App\PositionAuthorities::find($positionid);
         $authority_id = $position_authority_info -> authority_id ;
-        
+
         echo $username ,$usericon ,$groupname ,$surveyid ,$surveyname ,$confirmstatus ,$authority_id;
-        
     }
 
     /**

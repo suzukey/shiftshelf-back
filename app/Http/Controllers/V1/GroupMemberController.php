@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
-use App\GroupMember;
+use App\GroupMembers;
 use App\Http\Controllers\Controller;
 
 class GroupMemberController extends Controller
@@ -17,7 +17,7 @@ class GroupMemberController extends Controller
     {
         //一覧
         // 役職IDの昇順に並び替える
-        $groupmember = \App\GroupMember::orderBy('position_id', 'asc')->get();
+        $groupmember = \App\GroupMembers::orderBy('position_id', 'asc')->get();
         return json_encode($groupmember, JSON_PRETTY_PRINT);
     }
 
@@ -88,7 +88,7 @@ class GroupMemberController extends Controller
     public function destroy($id)
     {
         //削除
-        $groupmember = \App\GroupMember::find($id);
+        $groupmember = \App\GroupMembers::find($id);
         $groupmember->delete();
     }
 }

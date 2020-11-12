@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Users;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
@@ -36,7 +36,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //新規作成
-        $user = new \App\User;
+        $user = new \App\Users;
         $user -> username = $request->username;
         $user -> icon_url = $request ->icon_url;
         $user -> save();
@@ -75,7 +75,7 @@ class UserController extends Controller
     {
         //更新
         // findOrFail：モデルが見つからない時に、lluminate\Database\Eloquent\ModelNotFoundException例外を投げる
-        $user = \App\User::findOrFail($id);
+        $user = \App\Users::findOrFail($id);
         $user -> username = $request ->username;
         $user -> icon_url = $request ->icon_url;
         $user ->save();
@@ -90,7 +90,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         //削除
-        $user = \App\User ::findOrFail($id);
+        $user = \App\Users ::findOrFail($id);
         $user -> delete();
     }
 }
