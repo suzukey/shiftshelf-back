@@ -4,14 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Position extends Model
+class Groups extends Model
 {
-                /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name',
-    ];
+        'groupname', 'icon_url','regular_opening_hour','regular_closed_hour','regular_holiday',   ];
 }
