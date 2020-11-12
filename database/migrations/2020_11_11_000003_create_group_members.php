@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePositionAuthority extends Migration
+class CreateGroupMembers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreatePositionAuthority extends Migration
      */
     public function up()
     {
-        Schema::create('position_authority', function (Blueprint $table) {
-            $table->string('id', 10); // 役職権限ID
+        Schema::create('group_members', function (Blueprint $table) {
+            $table->string('id', 10); // グループメンバーID
+            $table->string('user_id', 10); // ユーザーID
+            $table->string('group_id', 10); // グループID
             $table->string('position_id', 10); // 役職ID
-            $table->string('authority_id', 10); // 権限ID
         });
     }
 
@@ -27,6 +28,6 @@ class CreatePositionAuthority extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('position_authority');
+        Schema::dropIfExists('group_members');
     }
 }

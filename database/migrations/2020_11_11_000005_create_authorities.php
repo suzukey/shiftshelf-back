@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAuthority extends Migration
+class CreateAuthorities extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAuthority extends Migration
      */
     public function up()
     {
-        Schema::create('authority', function (Blueprint $table) {
+        Schema::create('authorities', function (Blueprint $table) {
             $table->string('id', 10); // 権限ID
             $table->string('authoritySname'); // 権限名
 
@@ -27,6 +27,6 @@ class CreateAuthority extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authority');
+        Schema::dropIfExists('authorities');
     }
 }
