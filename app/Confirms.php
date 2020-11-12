@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Confirm extends Model
+class Confirms extends Model
 {
             /**
      * The attributes that are mass assignable.

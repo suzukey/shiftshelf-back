@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConfirm extends Migration
+class CreateConfirms extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateConfirm extends Migration
      */
     public function up()
     {
-        Schema::create('confirm', function (Blueprint $table) {
+        Schema::create('confirms', function (Blueprint $table) {
             $table->string('id', 10); // 確定シフトID
             $table->string('recruited_id', 10); // シフト募集ID
             $table->date('date'); // 日付
@@ -28,6 +28,6 @@ class CreateConfirm extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('confirm');
+        Schema::dropIfExists('confirms');
     }
 }

@@ -3,7 +3,7 @@ namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
 use App\Article;
-use App\Confirm;
+use App\Confirms;
 use App\Http\Controllers\Controller;
 
 class MakeShiftController extends Controller
@@ -16,7 +16,7 @@ class MakeShiftController extends Controller
     public function index()
     {
         //一覧
-        $shiftlist = \App\Confirm::orderBy('date','ask')->get();
+        $shiftlist = \App\Confirms::orderBy('date','asc')->get();
         return json_encode($shiftlist,JSON_PRETTY_PRINT);
     }
 
@@ -39,7 +39,7 @@ class MakeShiftController extends Controller
     public function store(Request $request)
     {
         //新規作成
-        $makeshift = new \App\Confirm();
+        $makeshift = new \App\Confirms();
         $makeshift -> date = $request->date;
         $makeshift -> save();
     }
@@ -76,7 +76,7 @@ class MakeShiftController extends Controller
     public function update(Request $request, $id)
     {
         //更新
-        $updateshift = \App\Confirm::findOrFail($id);
+        $updateshift = \App\Confirms::findOrFail($id);
         $updateshift -> date = $request->date;
         $updateshift ->save();
     }
@@ -90,7 +90,7 @@ class MakeShiftController extends Controller
     public function destroy($id)
     {
         //削除
-        $deleteshift = \App\Confirm ::findOrFail($id);
+        $deleteshift = \App\Confirms ::findOrFail($id);
         $deleteshift -> delete();
     }
 }
