@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSurvey extends Migration
+class CreateSurveies extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSurvey extends Migration
      */
     public function up()
     {
-        Schema::create('survey', function (Blueprint $table) {
+        Schema::create('surveies', function (Blueprint $table) {
             $table->string('id', 10); // シフト募集ID
             $table->string('recruitname', 10); // 希望調査名
             $table->date('start_date')->nullable(); // 開始日
@@ -31,6 +31,6 @@ class CreateSurvey extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('survey');
+        Schema::dropIfExists('surveies');
     }
 }

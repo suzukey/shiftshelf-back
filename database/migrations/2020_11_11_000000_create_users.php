@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUser extends Migration
+class CreateUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUser extends Migration
      */
     public function up()  // マイグレーション実行時に呼び出される関数.
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->string('id', 10); // ユーザーID
             $table->string('username', 30); // ユーザー名
             $table->string('icon_url')->nullable(); // ユーザーアイコン
@@ -28,7 +28,7 @@ class CreateUser extends Migration
      */
     public function down() // ロールバック時に呼び出される関数.
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 }
 ?>

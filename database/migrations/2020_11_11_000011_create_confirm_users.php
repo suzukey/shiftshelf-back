@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWishUser extends Migration
+class CreateConfirmUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateWishUser extends Migration
      */
     public function up()
     {
-        Schema::create('wish_user', function (Blueprint $table) {
-            $table->string('id', 10); // シフト希望ユーザーID
-            $table->string('wish_id', 10); // シフト希望ID
+        Schema::create('confirm_users', function (Blueprint $table) {
+            $table->string('id', 10); // 確定シフトユーザーID
+            $table->string('confirm_id', 10); // 確定シフトID
             $table->string('user_id', 10); // ユーザーID
-            $table->time('start_id')->nullable(); // 開始時刻
+            $table->time('start_at')->nullable(); // 開始時刻
             $table->time('end_at')->nullable(); // 終了時刻
         });
     }
@@ -29,6 +29,6 @@ class CreateWishUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wish_user');
+        Schema::dropIfExists('confirm_users');
     }
 }
