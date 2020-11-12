@@ -15,7 +15,7 @@ class PositionController extends Controller
     public function index()
     {
         //一覧
-        $position = \App\Positions::orderBy('position_id', 'asc')->get();
+        $position = \App\Positions::orderBy('id','asc')->get();
         return json_encode($position,JSON_PRETTY_PRINT);
     }
 
