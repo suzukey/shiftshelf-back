@@ -40,6 +40,7 @@ class UserController extends Controller
         $user = new \App\Users;
         $user -> username = $request->username;
         $user -> icon_url = $request ->icon_url;
+        $user -> email = $request -> email;
         $user -> save();
         return new JsonResponse(
             [

@@ -84,6 +84,7 @@ class MakeShiftController extends Controller
     {
         //更新
         $updateshift = \App\Confirms::findOrFail($id);
+        $updateshift -> recruited_id = $request -> recruited_id;
         $updateshift -> date = $request->date;
         $updateshift ->save();
         return new JsonResponse(

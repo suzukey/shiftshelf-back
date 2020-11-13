@@ -20,6 +20,11 @@ class CreateTemporaries extends Migration
             $table->boolean('is_holiday')->nullable(); // 臨時休業
             $table->time('opening_hour')->nullable(); // 臨時休業時間
             $table->time('closed_hour')->nullable(); // 臨時休業時間
+
+            $table->foreign('recruited_id')
+            ->references('id')
+            ->on('surveies')
+            ->onDelete('cascade');
         });
     }
 

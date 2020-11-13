@@ -21,6 +21,11 @@ class CreateSurveies extends Migration
             $table->date('recruitmentstarted'); // 募集開始日
             $table->datetime('deadline'); // 募集締め切り日
             $table->string('group_id', 10); // グループID
+
+            $table->foreign('group_id')
+            ->references('id')
+            ->on('groups')
+            ->onDelete('cascade');
         });
     }
 
