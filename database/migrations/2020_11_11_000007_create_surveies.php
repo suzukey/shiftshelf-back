@@ -14,7 +14,7 @@ class CreateSurveies extends Migration
     public function up()
     {
         Schema::create('surveies', function (Blueprint $table) {
-            $table->string('id', 10); // シフト募集ID
+            $table->bigIncrements('id');
             $table->string('recruitname', 10); // 希望調査名
             $table->date('start_date')->nullable(); // 開始日
             $table->date('end_date')->nullable(); //　終了日

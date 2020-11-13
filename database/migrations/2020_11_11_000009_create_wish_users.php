@@ -14,7 +14,7 @@ class CreateWishUsers extends Migration
     public function up()
     {
         Schema::create('wish_users', function (Blueprint $table) {
-            $table->string('id', 10); // シフト希望ユーザーID
+            $table->bigIncrements('id');
             $table->string('wish_id', 10); // シフト希望ID
             $table->string('user_id', 10); // ユーザーID
             $table->time('start_id')->nullable(); // 開始時刻

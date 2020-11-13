@@ -14,7 +14,7 @@ class CreateConfirmUsers extends Migration
     public function up()
     {
         Schema::create('confirm_users', function (Blueprint $table) {
-            $table->string('id', 10); // 確定シフトユーザーID
+            $table->bigIncrements('id');
             $table->string('confirm_id', 10); // 確定シフトID
             $table->string('user_id', 10); // ユーザーID
             $table->time('start_at')->nullable(); // 開始時刻

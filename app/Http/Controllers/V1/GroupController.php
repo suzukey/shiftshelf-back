@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\V1;
+use Illuminate\Http\JsonResponse;
 
 use Illuminate\Http\Request;
 use App\Groups;
@@ -37,13 +38,19 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         //新規作成
-        $group = new \app\Groups;
+        $group = new Groups;
         $group->groupname = $request->groupname;
         $group->icon_url = $request->icon_url;
         $group->regular_opening_hour = $request->regular_closed_hour;
         $group->regular_closed_hour = $request->regular_closed_hour;
         $group->regular_holiday = $request->regular_holiday;
         $group->save();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $group->toJSON()
+            ],
+            201 );
 
     }
 

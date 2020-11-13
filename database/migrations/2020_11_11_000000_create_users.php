@@ -14,7 +14,7 @@ class CreateUsers extends Migration
     public function up()  // マイグレーション実行時に呼び出される関数.
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('id',10); // ユーザーID
+            $table->bigIncrements('id');
             $table->string('username',30); // ユーザー名
             $table->string('icon_url')->nullable(); // ユーザーアイコン
             $table->string('email',256); //メールアドレス

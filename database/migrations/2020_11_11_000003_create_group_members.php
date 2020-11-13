@@ -14,7 +14,7 @@ class CreateGroupMembers extends Migration
     public function up()
     {
         Schema::create('group_members', function (Blueprint $table) {
-            $table->string('id', 10); // グループメンバーID
+            $table->bigIncrements('id');
             $table->string('user_id', 10); // ユーザーID
             $table->string('group_id', 10); // グループID
             $table->string('position_id', 10); // 役職ID
