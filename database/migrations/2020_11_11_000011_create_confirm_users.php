@@ -19,6 +19,11 @@ class CreateConfirmUsers extends Migration
             $table->string('user_id', 10); // ユーザーID
             $table->time('start_at')->nullable(); // 開始時刻
             $table->time('end_at')->nullable(); // 終了時刻
+
+            $table->foreign('confirm_id') // 外部キー設定
+            ->references('id')
+            ->on('confirms')
+            ->onDelete('cascade');
         });
     }
 
