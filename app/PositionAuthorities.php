@@ -4,14 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Wish extends Model
+class PositionAuthorities extends Model
 {
+    public $timestamps = false;
                 /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'date',
-    ];
+    protected $fillable = [];
 }

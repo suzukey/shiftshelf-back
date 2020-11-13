@@ -14,7 +14,7 @@ class CreateAuthorities extends Migration
     public function up()
     {
         Schema::create('authorities', function (Blueprint $table) {
-            $table->string('id', 10); // 権限ID
+            $table->bigIncrements('id');
             $table->string('authoritySname'); // 権限名
 
         });

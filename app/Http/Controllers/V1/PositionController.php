@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
-use App\Position;
+use App\Positions;
 use App\Http\Controllers\Controller;
 
 class PositionController extends Controller
@@ -15,7 +15,7 @@ class PositionController extends Controller
     public function index()
     {
         //一覧
-        $position = \App\Position::orderBy('position_id', 'asc')->get();
+        $position = \App\Positions::orderBy('id','asc')->get();
         return json_encode($position,JSON_PRETTY_PRINT);
     }
 

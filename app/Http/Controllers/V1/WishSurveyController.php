@@ -1,9 +1,10 @@
 <?php
 namespace App\Http\Controllers\V1;
+use Illuminate\Http\JsonResponse;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Temporary;
+use App\Temporaries;
 // 希望調査
 class WishSurveyController extends Controller
 {
@@ -15,7 +16,7 @@ class WishSurveyController extends Controller
     public function index()
     {
         //一覧
-        $wishsurveylist = \App\Survey::orderBy('deadline','desc')->get();
+        $wishsurveylist = \App\Surveies::orderBy('deadline','desc')->get();
         return json_encode($wishsurveylist,JSON_PRETTY_PRINT);
     }
 
@@ -38,7 +39,7 @@ class WishSurveyController extends Controller
     public function store(Request $request)
     {
         //新規作成
-        $makesurvey = new \App\Survey();
+        $makesurvey = new \App\Surveies();
         $makesurvey -> recruitname = $request->recruitname;
         $makesurvey -> start_date = $request ->start_date;
         $makesurvey -> end_date = $request->end_date;
@@ -59,7 +60,7 @@ class WishSurveyController extends Controller
         //詳細
         // 一般 シフト希望調査詳細
         // 臨時営業時間の場合は臨時の内容、そうでない場合は通常の営業時間等を返す。
-        $temporary = Temporary::find($id);
+        $temporary = Temporaries::find($id);
         if($temporary->is_holiday == true){
             $openning_hour=$temporary->opening_hour;
             $closed_hour = $temporary->closed_hour;
@@ -67,7 +68,7 @@ class WishSurveyController extends Controller
         }
         else{
             // 通常営業の開始、終了時刻返す
-            $regular = \App\Group::get();
+            $regular = \App\Groups::get();
             $openning_hour=$regular->regular_opening_hour;
             $closed_hour=$regular->regular_closed_hour;
         }
@@ -95,7 +96,7 @@ class WishSurveyController extends Controller
     public function update(Request $request, $id)
     {
         //更新
-        $userconfirm = new \App\Confirm();
+        $userconfirm = new \App\Confirms();
         $userconfirm -> recruitname = $request->status;
         $userconfirm -> save();
     }

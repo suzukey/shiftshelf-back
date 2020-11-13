@@ -1,8 +1,9 @@
 <?php
 namespace App\Http\Controllers\V1;
+use Illuminate\Http\JsonResponse;
 
 use Illuminate\Http\Request;
-use App\Article;
+use App\Articles;
 use App\Confirms;
 use App\Http\Controllers\Controller;
 
@@ -42,6 +43,12 @@ class MakeShiftController extends Controller
         $makeshift = new \App\Confirms();
         $makeshift -> date = $request->date;
         $makeshift -> save();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $makeshift->toJSON()
+            ],
+            201 );
     }
 
     /**
@@ -79,6 +86,12 @@ class MakeShiftController extends Controller
         $updateshift = \App\Confirms::findOrFail($id);
         $updateshift -> date = $request->date;
         $updateshift ->save();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $updateshift->toJSON()
+            ],
+            201 );
     }
 
     /**
@@ -92,5 +105,11 @@ class MakeShiftController extends Controller
         //削除
         $deleteshift = \App\Confirms ::findOrFail($id);
         $deleteshift -> delete();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $deleteshift->toJSON()
+            ],
+            201 );
     }
 }

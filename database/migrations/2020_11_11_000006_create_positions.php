@@ -14,7 +14,7 @@ class CreatePositions extends Migration
     public function up()
     {
         Schema::create('positions', function (Blueprint $table) {
-            $table->string('id'); // 役職ID
+            $table->bigIncrements('id');
             $table->string('name'); // 役職名
             $table->integer('sequence'); // 順序
         });

@@ -2,11 +2,11 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Article;
-use App\Confirm_User;
-use App\Confirm;
-use App\Survey;
-use App\GroupMember;
+use App\Articles;
+use App\ConfirmUsers;
+use App\Confirms;
+use App\Surveies;
+use App\GroupMembers;
 use App\Http\Controllers\Controller;
 
 class CalenderController extends Controller
@@ -52,7 +52,7 @@ class CalenderController extends Controller
     {
         //詳細
         //get使います
-        $confirm_id = \Confirm_User::table('confirm_id')->get();
+        $confirm_id = \App\ConfirmUsers::table('confirm_id')->get();
     }
 
     /**

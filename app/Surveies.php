@@ -4,14 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Position extends Model
+class Surveies extends Model
 {
-                /**
+    public $timestamps = false;
+        /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name',
+        'recruitname', 'start_date','end_date','recruitmentstarted','deadline',
     ];
 }

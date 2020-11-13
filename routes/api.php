@@ -18,7 +18,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
     Route::patch('user', 'UserController@update');
     Route::delete('user', 'UserController@destroy');
 
-    Route::get('group', 'GroupController@show');
+    Route::get('group/:id', 'GroupController@show');
     Route::post('group', 'GroupController@store');
     Route::patch('group', 'GroupController@update');
     Route::delete('group', 'GroupController@destroy');
@@ -33,21 +33,20 @@ Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
     Route::delete('makeshift', 'MakeShiftController@destroy');
 
     Route::get('wishsurvey', 'WishSurveyController@index');
-    Route::get('wishsurvey', 'WishSurveyController@show');
+    Route::get('wishsurvey/:id', 'WishSurveyController@show');
     Route::patch('wishsurvey', 'WishSurveyController@update');
 
-    Route::get('operator', 'OperatorController@show');
+    Route::get('operator/:id', 'OperatorController@show');
 
-    Route::get('homesidemenu', 'HomeSideMenuController@show');
+    Route::get('homesidemenu/:id', 'HomeSideMenuController@show');
 
-    Route::get('groupsidemenu', 'GroupSideMenuController@show');
+    Route::get('groupsidemenu/:id', 'GroupSideMenuController@show');
 
-    Route::get('Calendar', 'CalendarController@show');
+    Route::get('Calendar/:id', 'CalendarController@show');
 
-    Route::get('share', 'SharController@show');
+    Route::get('share/:id', 'SharController@show');
 
     Route::get('wishshift', 'WishShiftController@index');
 
     Route::get('position', 'PositionController@index');
 });
-?>

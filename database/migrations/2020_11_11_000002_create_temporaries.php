@@ -14,7 +14,7 @@ class CreateTemporaries extends Migration
     public function up()
     {
         Schema::create('temporaries', function (Blueprint $table) {
-            $table->string('id', 10); // 臨時ID
+            $table->bigIncrements('id');
             $table->string('recruited_id', 10); // シフト募集ID
             $table->date('date'); // 日付
             $table->boolean('is_holiday')->nullable(); // 臨時休業

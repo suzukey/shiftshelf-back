@@ -1,8 +1,9 @@
 <?php
 namespace App\Http\Controllers\V1;
+use Illuminate\Http\JsonResponse;
 
 use Illuminate\Http\Request;
-use App\Group;
+use App\Groups;
 use App\Http\Controllers\Controller;
 
 class GroupController extends Controller
@@ -37,13 +38,19 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         //新規作成
-        $group = new \app\Group;
+        $group = new Groups;
         $group->groupname = $request->groupname;
         $group->icon_url = $request->icon_url;
         $group->regular_opening_hour = $request->regular_closed_hour;
         $group->regular_closed_hour = $request->regular_closed_hour;
         $group->regular_holiday = $request->regular_holiday;
         $group->save();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $group->toJSON()
+            ],
+            201 );
 
     }
 
@@ -56,7 +63,7 @@ class GroupController extends Controller
     public function show($id)
     {
         //詳細
-        $group = Group::findOrFail($id);
+        $group = Groups::findOrFail($id);
         return json_encode($group,JSON_PRETTY_PRINT);
     }
 
@@ -81,7 +88,7 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         //更新
-        $group = \App\Group::findOrFail($id);
+        $group = \App\Groups::findOrFail($id);
         $group -> groupname = $request ->groupname;
         $group -> icon_url = $request ->icon_url;
         $group -> regular_opening_hour = $request ->regular_opening_hour;
@@ -99,7 +106,7 @@ class GroupController extends Controller
     public function destroy($id)
     {
         //削除
-        $group = \App\Group ::findOrFail($id);
+        $group = \App\Groups ::findOrFail($id);
         $group -> delete();
     }
 }

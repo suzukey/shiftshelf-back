@@ -14,7 +14,7 @@ class CreateWishes extends Migration
     public function up()
     {
         Schema::create('wishes', function (Blueprint $table) {
-            $table->string('id', 10); // シフト希望ID
+            $table->bigIncrements('id');
             $table->string('recruited_id', 10); // シフト募集ID
             $table->date('date'); // 日付
 

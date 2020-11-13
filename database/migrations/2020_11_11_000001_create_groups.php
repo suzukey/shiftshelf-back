@@ -14,12 +14,12 @@ class CreateGroups extends Migration
     public function up()
     {
         Schema::create('groups', function (Blueprint $table) {
-            $table->string('id',10); // グループID
+            $table->bigIncrements('id');
             $table->string('groupname',60); // グループ名
             $table->string('icon_url')->nullable(); // グループアイコン
             $table->time('regular_opening_hour')->nullable(); // 始業時間
             $table->time('regular_closed_hour')->nullable(); // 就業時間
-            $table->binary('regular_holiday', 8)->nullable(); // 定休日
+            $table->binary('regular_holiday', 7)->nullable(); // 定休日
         });
     }
     /**

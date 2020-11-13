@@ -14,7 +14,7 @@ class CreatePositionAuthorities extends Migration
     public function up()
     {
         Schema::create('position_authorities', function (Blueprint $table) {
-            $table->string('id', 10); // 役職権限ID
+            $table->bigIncrements('id');
             $table->string('position_id', 10); // 役職ID
             $table->string('authority_id', 10); // 権限ID
         });

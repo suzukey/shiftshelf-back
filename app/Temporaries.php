@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Temporary extends Model
+class Temporaries extends Model
 {
+    public $timestamps = false;
                 /**
      * The attributes that are mass assignable.
      *
