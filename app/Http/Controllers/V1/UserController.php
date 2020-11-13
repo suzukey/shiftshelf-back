@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\V1;
+use Illuminate\Http\JsonResponse;
 
 use Illuminate\Http\Request;
 use App\Users;
@@ -40,6 +41,12 @@ class UserController extends Controller
         $user -> username = $request->username;
         $user -> icon_url = $request ->icon_url;
         $user -> save();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $user->toJSON()
+            ],
+            201 );
     }
 
     /**
@@ -79,6 +86,12 @@ class UserController extends Controller
         $user -> username = $request ->username;
         $user -> icon_url = $request ->icon_url;
         $user ->save();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $user->toJSON()
+            ],
+            201 );
     }
 
     /**
@@ -92,5 +105,11 @@ class UserController extends Controller
         //削除
         $user = \App\Users ::findOrFail($id);
         $user -> delete();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $user->toJSON()
+            ],
+            201 );
     }
 }

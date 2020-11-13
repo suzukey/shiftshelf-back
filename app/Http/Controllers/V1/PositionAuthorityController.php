@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\V1;
+use Illuminate\Http\JsonResponse;
 
 use Illuminate\Http\Request;
 use App\Articles;
@@ -41,6 +42,12 @@ class PositionAuthorityController extends Controller
         $PositionAuthority->position_id = $request->position_id;
         $PositionAuthority->authority_id = $request->authority_id;
         $PositionAuthority->save();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $PositionAuthority->toJSON()
+            ],
+            201 );
 
     }
 
@@ -82,6 +89,12 @@ class PositionAuthorityController extends Controller
         $PositionAuthority -> position_id = $request ->position_id;
         $PositionAuthority -> authority_id = $request ->authority_id;
         $PositionAuthority ->save();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $PositionAuthority->toJSON()
+            ],
+            201 );
     }
 
     /**
@@ -95,5 +108,11 @@ class PositionAuthorityController extends Controller
         //削除
         $PositionAuthority = \App\PositionAuthorities ::findOrFail($id);
         $PositionAuthority -> delete();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $PositionAuthority->toJSON()
+            ],
+            201 );
     }
 }
