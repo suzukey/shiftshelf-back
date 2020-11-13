@@ -17,6 +17,11 @@ class CreateWishes extends Migration
             $table->bigIncrements('id');
             $table->string('recruited_id', 10); // シフト募集ID
             $table->date('date'); // 日付
+
+            $table->foreign('recruited_id') // 外部キー設定
+            ->references('id')
+            ->on('surveies')
+            ->onDelete('cascade');
         });
     }
 

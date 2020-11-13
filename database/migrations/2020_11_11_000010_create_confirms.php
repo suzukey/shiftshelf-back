@@ -18,6 +18,11 @@ class CreateConfirms extends Migration
             $table->string('recruited_id', 10); // シフト募集ID
             $table->date('date'); // 日付
             $table->boolean('status'); // 確定ステータス
+
+             $table->foreign('recruited_id') // 外部キー設定
+                  ->references('id')
+                  ->on('surveies')
+                  ->onDelete('cascade');
         });
     }
 

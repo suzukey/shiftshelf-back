@@ -19,6 +19,16 @@ class CreateWishUsers extends Migration
             $table->string('user_id', 10); // ユーザーID
             $table->time('start_id')->nullable(); // 開始時刻
             $table->time('end_at')->nullable(); // 終了時刻
+
+            $table->foreign('wish_id') // 外部キー設定
+                  ->references('id')
+                  ->on('wishes')
+                  ->onDelete('cascade');
+
+            $table->foreign('user_id') // 外部キー設定
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
         });
     }
 
