@@ -52,8 +52,8 @@ class ShareController extends Controller
         $surveyid = $surveyinfo -> id;
         $confirminfo = \App\Confirms::pluck('id',"date")
         ->where('recruited_id', $surveyid)
-        ->where('date',">"Cardon::now()->startOfMonth())
-        ->where('date',"<"Cardon::now()->endOfMonth())
+        ->where('date',">"Carbon::now()->startOfMonth())
+        ->where('date',"<"Carbon::now()->endOfMonth())
         ->get();
         $confirmid = $confirminfo -> id;
         $confirmuserinfo = \App\ConfirmUser::while('user_id', $id)
