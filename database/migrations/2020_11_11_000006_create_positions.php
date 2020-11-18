@@ -13,8 +13,12 @@ class CreatePositions extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('positions')) {
+            // テーブルが存在していればリターン
+            return;
+        }
         Schema::create('positions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name'); // 役職名
             $table->integer('sequence'); // 順序
         });

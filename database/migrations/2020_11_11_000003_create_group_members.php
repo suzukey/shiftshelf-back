@@ -13,11 +13,15 @@ class CreateGroupMembers extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('group_members')) {
+            // テーブルが存在していればリターン
+            return;
+        }
         Schema::create('group_members', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('user_id', 10); // ユーザーID
-            $table->string('group_id', 10); // グループID
-            $table->string('position_id', 10); // 役職ID
+            $table->increments('id');
+            $table->unsignedInteger('user_id')->length(10); // ユーザーID
+            $table->unsignedInteger('group_id')->length(10); // グループID
+            $table->unsignedInteger('position_id')->length(10); // 役職ID
 
             $table->foreign('user_id')
             ->references('id')

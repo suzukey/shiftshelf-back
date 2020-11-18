@@ -13,9 +13,13 @@ class CreateWishes extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('wishes')) {
+            // テーブルが存在していればリターン
+            return;
+        }
         Schema::create('wishes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('recruited_id', 10); // シフト募集ID
+            $table->increments('id');
+            $table->unsignedInteger('recruited_id')->length(10); // シフト募集ID
             $table->date('date'); // 日付
 
             $table->foreign('recruited_id') // 外部キー設定

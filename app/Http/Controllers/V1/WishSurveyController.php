@@ -72,7 +72,7 @@ class WishSurveyController extends Controller
             $openning_hour=$regular->regular_opening_hour;
             $closed_hour=$regular->regular_closed_hour;
         }
-        return array($openning_hour,$closed_hour);
+        return json_encode(array($openning_hour,$closed_hour),JSON_PRETTY_PRINT);
     }
 
     /**
