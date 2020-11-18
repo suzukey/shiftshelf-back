@@ -2,7 +2,8 @@
 namespace App\Http\Controllers\V1;
 
 use Illuminate\Http\Request;
-use App\Articles;
+//use App\Articles;
+use App\Groups;
 use App\Http\Controllers\Controller;
 
 class ShareController extends Controller
@@ -47,6 +48,18 @@ class ShareController extends Controller
     public function show($id)
     {
         //詳細
+        $surveyinfo = \App\Surveies::where('group_id', $id)->first();
+        $surveyid = $surveyinfo -> id;
+        $confirminfo = \App\Confirms::pluck('id',"date")
+        ->where('recruited_id', $surveyid)
+        ->where('date',">"Cardon::now()->startOfMonth()
+        ->where('date',"<"Cardon::now()->endOfMonth())
+        ->get();
+        $confirmid = $confirminfo -> id;
+        $confirmuserinfo = \App\ConfirmUser::while('user_id', $id)
+        ->while('confirm_id', $confirmid);
+        return json_encode(array($confirminfo,$confirmuserinfo),JSON_PRETTY_PRINT);
+        //$names = \App\User::pluck('id');
     }
 
     /**
@@ -70,6 +83,7 @@ class ShareController extends Controller
     public function update(Request $request, $id)
     {
         //更新
+
     }
 
     /**

@@ -59,7 +59,8 @@ class HomeSideMenuController extends Controller
             $q2->where('group_id','=','$userid');
         }])->get();
 
-        echo $username , $usericon , $groupinfo;
+        $arrayGrouSide = array($username , $usericon , $groupinfo);
+        return json_encode($arrayGrouSide,JSON_PRETTY_PRINT);
     }
 
     /**
