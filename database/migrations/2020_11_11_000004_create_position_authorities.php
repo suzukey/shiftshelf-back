@@ -13,10 +13,14 @@ class CreatePositionAuthorities extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('position_authorities')) {
+            // テーブルが存在していればリターン
+            return;
+        }
         Schema::create('position_authorities', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('position_id', 10); // 役職ID
-            $table->string('authority_id', 10); // 権限ID
+            $table->increments('id');
+            $table->unsignedInteger('position_id')->length(10); // 役職ID
+            $table->unsignedInteger('authority_id')->length(10); // 権限ID
 
             $table->foreign('position_id')
             ->references('id')

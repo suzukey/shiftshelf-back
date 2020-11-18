@@ -13,14 +13,18 @@ class CreateSurveies extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('surveies')) {
+            // テーブルが存在していればリターン
+            return;
+        }
         Schema::create('surveies', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('recruitname', 10); // 希望調査名
             $table->date('start_date')->nullable(); // 開始日
             $table->date('end_date')->nullable(); //　終了日
             $table->date('recruitmentstarted'); // 募集開始日
             $table->datetime('deadline'); // 募集締め切り日
-            $table->string('group_id', 10); // グループID
+            $table->unsignedInteger('group_id')->length(10); // グループID
 
             $table->foreign('group_id')
             ->references('id')

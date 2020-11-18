@@ -13,8 +13,12 @@ class CreateUsers extends Migration
      */
     public function up()  // マイグレーション実行時に呼び出される関数.
     {
+        if (Schema::hasTable('users')) {
+            // テーブルが存在していればリターン
+            return;
+        }
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('username',30); // ユーザー名
             $table->string('icon_url')->nullable(); // ユーザーアイコン
             $table->string('email',256); //メールアドレス

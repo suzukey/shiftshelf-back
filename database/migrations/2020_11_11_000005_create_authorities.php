@@ -13,8 +13,12 @@ class CreateAuthorities extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('authorities')) {
+            // テーブルが存在していればリターン
+            return;
+        }
         Schema::create('authorities', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('authoritySname'); // 権限名
 
         });

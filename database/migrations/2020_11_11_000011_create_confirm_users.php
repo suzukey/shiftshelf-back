@@ -13,10 +13,14 @@ class CreateConfirmUsers extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('confirm_users')) {
+            // テーブルが存在していればリターン
+            return;
+        }
         Schema::create('confirm_users', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('confirm_id', 10); // 確定シフトID
-            $table->string('user_id', 10); // ユーザーID
+            $table->increments('id');
+            $table->unsignedInteger('confirm_id')->length(10); // 確定シフトID
+            $table->unsignedInteger('user_id')->length(10); // ユーザーID
             $table->time('start_at')->nullable(); // 開始時刻
             $table->time('end_at')->nullable(); // 終了時刻
 

@@ -13,11 +13,15 @@ class CreateWishUsers extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('wish_users')) {
+            // テーブルが存在していればリターン
+            return;
+        }
         Schema::create('wish_users', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('wish_id', 10); // シフト希望ID
-            $table->string('user_id', 10); // ユーザーID
-            $table->time('start_id')->nullable(); // 開始時刻
+            $table->increments('id');
+            $table->unsignedInteger('wish_id')->length(10);// シフト希望ID
+            $table->unsignedInteger('user_id')->length(10); // ユーザーID
+            $table->time('start_at')->nullable(); // 開始時刻
             $table->time('end_at')->nullable(); // 終了時刻
 
             $table->foreign('wish_id') // 外部キー設定
