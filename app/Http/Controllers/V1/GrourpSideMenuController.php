@@ -67,7 +67,7 @@ class GroupSideMenuController extends Controller
         $position_authority_info = \App\PositionAuthorities::find($positionid);
         $authority_id = $position_authority_info -> authority_id ;
 
-        $arrayGroupSide p= array($username ,$usericon ,$groupname ,$surveyid ,$surveyname ,$confirmstatus ,$authority_id);
+        $arrayGroupSide = array($username ,$usericon ,$groupname ,$surveyid ,$surveyname ,$confirmstatus ,$authority_id);
         return json_encode($arrayGroupSide,JSON_PRETTY_PRINT);
     }
 
