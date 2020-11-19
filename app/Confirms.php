@@ -15,4 +15,7 @@ class Confirms extends Model
     protected $fillable = [
         'status',
     ];
+    public function Surveies(){
+        return $this->belongsTo('App\Surveies');
+    }
 }

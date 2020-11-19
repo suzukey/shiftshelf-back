@@ -15,4 +15,7 @@ class Temporaries extends Model
     protected $fillable = [
         'is_holiday','opening_hour','closed_hour',
     ];
+    public function Surveies(){
+        return $this->belongsTo('App\Surveies');
+    }
 }

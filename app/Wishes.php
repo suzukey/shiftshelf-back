@@ -15,4 +15,10 @@ class Wishes extends Model
     protected $fillable = [
         'date',
     ];
+    public function Surveies(){
+        return $this->belongsTo('App\Surveies');
+    }
+    public function WishUsers(){
+        return $this->hasMany('\App\WishUsers');
+    }
 }

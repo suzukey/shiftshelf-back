@@ -15,4 +15,7 @@ class Authorities extends Model
     protected $fillable = [
         'name',
     ];
+    public function PositionAuthorities(){
+        return $this->hasMany('\App\PositionAuthorities');
+    }
 }

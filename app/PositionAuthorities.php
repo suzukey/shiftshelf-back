@@ -13,4 +13,13 @@ class PositionAuthorities extends Model
      * @var array
      */
     protected $fillable = [];
+    public function GroupMembers(){
+        return $this->hasMany('\App\GroupMembers');
+    }
+    public function Authorities(){
+        return $this->belongsTo('App\Authorities');
+    }
+    public function Positions(){
+        return $this->belongsTo('App\Positions');
+    }
 }

@@ -13,4 +13,8 @@ class ConfirmUsers extends Model
      * @var array
      */
     protected $fillable = [];
+
+    public function Users(){
+        return $this->belongsTo('App\Users');
+    }
 }

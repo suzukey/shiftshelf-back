@@ -15,4 +15,14 @@ class GroupMembers extends Model
     protected $fillable = [
         'position_id',
     ];
+
+    public function Users(){
+        return $this->belongsTo('App\Users');
+    }
+    public function Groups(){
+        return $this->belongsTo('App\Groups');
+    }
+    public function PositionAuthorities(){
+        return $this->belongsTo('App\PositionAuthorities');
+    }
 }

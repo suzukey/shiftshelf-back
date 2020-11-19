@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Positions extends Model
+class WisheUsers extends Model
 {
     public $timestamps = false;
                 /**
@@ -13,9 +13,13 @@ class Positions extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'start_at','end_at',
     ];
-    public function PositionAuthorities(){
-        return $this->hasMany('\App\PositionAuthorities');
+
+    public function Users(){
+        return $this->belongsTo('App\Users');
+    }
+    public function Wishes(){
+        return $this->belongsTo('App\Wishes');
     }
 }
