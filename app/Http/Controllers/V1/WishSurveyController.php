@@ -1,10 +1,10 @@
 <?php
 namespace App\Http\Controllers\V1;
 use Illuminate\Http\JsonResponse;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Temporaries;
+use App\GroupMembers;
 // 希望調査
 class WishSurveyController extends Controller
 {
@@ -38,15 +38,25 @@ class WishSurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //新規作成
+        // //新規作成
         $makesurvey = new \App\Surveies();
-        $makesurvey -> recruitname = $request->recruitname;
-        $makesurvey -> start_date = $request ->start_date;
-        $makesurvey -> end_date = $request->end_date;
-        $makesurvey -> recruitmentstarted = $request ->recruitmentstarted;
-        $makesurvey -> deadline = $request ->deadline;
-        $makesurvey -> save();
-        // 募集の開始日はボタンを押した日？
+        $today = date("Y-m-d H:i:s");
+        $makesurvey -> recruitmentstarted = $today;
+        $makesurvey -> group_id = $request->group_id;
+
+        $makesurvey->fill( $request->all() )->save();
+        // $makesurvey -> recruitname = $request->recruitname;
+        // $makesurvey -> start_date = $request ->start_date;
+        // $makesurvey -> end_date = $request->end_date;
+        // $makesurvey -> group_id = $;
+        // $makesurvey -> deadline = $request ->deadline;
+        // $makesurvey -> save();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $makesurvey->toJSON()
+            ],
+            201 );
     }
 
     /**

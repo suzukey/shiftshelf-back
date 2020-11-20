@@ -39,8 +39,10 @@ class MakeShiftController extends Controller
      */
     public function store(Request $request)
     {
+// 未完
         //新規作成
         $makeshift = new \App\Confirms();
+        $makeshift -> recruited_id = $request->recruited_id;//<- シフト募集IDを取る
         $makeshift -> date = $request->date;
         $makeshift -> save();
         return new JsonResponse(
