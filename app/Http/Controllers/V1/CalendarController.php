@@ -64,7 +64,7 @@ class CalenderController extends Controller
         ->get();
         $confirmid = $confirminfo -> id;
         $confirmuserinfo = \App\ConfirmUsers::while('user_id', $id)
-        ->while('confirm_id', $confirmid);
+        ->where('confirm_id', $confirmid);
         $confirmid_2 = $confirmuserinfo -> confirm_id;
         $confirmuser_start_at = $confirmuserinfo -> start_at;
         $confirmuser_end_at = $confirmuserinfo -> end_at;
