@@ -45,11 +45,13 @@ class OperatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id , Request $request)
     {
         //詳細
-        $operater = \App\GroupMembers::where('userid', '=' ,'id')->get();
-        return($operater -> position_id);
+        $operater_user = $request -> user_id;
+        $operater_group = $request -> group_id;
+        $operater = array($operater_user,$operater_group);
+        return json_encode($operater,JSON_PRETTY_PRINT);
     }
 
     /**

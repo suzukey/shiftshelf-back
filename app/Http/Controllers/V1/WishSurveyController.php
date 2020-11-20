@@ -42,13 +42,11 @@ class WishSurveyController extends Controller
         $makesurvey = new \App\Surveies();
         $today = date("Y-m-d H:i:s");
         $makesurvey -> recruitmentstarted = $today;
-        $makesurvey -> group_id = $request->group_id;
-
         $makesurvey->fill( $request->all() )->save();
         // $makesurvey -> recruitname = $request->recruitname;
         // $makesurvey -> start_date = $request ->start_date;
         // $makesurvey -> end_date = $request->end_date;
-        // $makesurvey -> group_id = $;
+        // $makesurvey -> group_id = $request->group_id;
         // $makesurvey -> deadline = $request ->deadline;
         // $makesurvey -> save();
         return new JsonResponse(
