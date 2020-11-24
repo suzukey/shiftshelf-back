@@ -88,13 +88,20 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         //更新
-        $group = \App\Groups::findOrFail($id);
-        $group -> groupname = $request ->groupname;
-        $group -> icon_url = $request ->icon_url;
-        $group -> regular_opening_hour = $request ->regular_opening_hour;
-        $group -> regular_closed_hour = $request ->regular_closed_hour;
-        $group -> regular_holiday = $request ->regular_holiday;
-        $group ->save();
+        $group = Groups::findOrFail($id);
+        $group->fill( $request->all() )->save();
+        // $group -> groupname = $request ->groupname;
+        // $group -> icon_url = $request ->icon_url;
+        // $group -> regular_opening_hour = $request ->regular_opening_hour;
+        // $group -> regular_closed_hour = $request ->regular_closed_hour;
+        // $group -> regular_holiday = $request ->regular_holiday;
+        // $group ->save();
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $group->toJSON()
+            ],
+            201 );
     }
 
     /**

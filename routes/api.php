@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
     Route::post('user', 'UserController@store');
-    Route::patch('user', 'UserController@update');
-    Route::delete('user', 'UserController@destroy');
+    Route::patch('user/{id}', 'UserController@update');
+    Route::delete('user/{id}', 'UserController@destroy');
 
-    Route::get('group/:id', 'GroupController@show');
+    Route::get('group/{id}', 'GroupController@show');
     Route::post('group', 'GroupController@store');
-    Route::patch('group', 'GroupController@update');
+    Route::patch('group/{id}', 'GroupController@update');
     Route::delete('group', 'GroupController@destroy');
 
     Route::get('groupmember', 'GroupMemberController@index');
@@ -29,23 +29,23 @@ Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
 
     Route::get('makeshift', 'MakeShiftController@index');
     Route::post('makeshift', 'MakeShiftController@store');
-    Route::patch('makeshift', 'MakeShiftController@update');
+    Route::patch('makeshift/{id}', 'MakeShiftController@update');
     Route::delete('makeshift', 'MakeShiftController@destroy');
 
     Route::get('wishsurvey', 'WishSurveyController@index');
-    Route::get('wishsurvey/:id', 'WishSurveyController@show');
+    Route::get('wishsurvey/{id}', 'WishSurveyController@show');
     Route::patch('wishsurvey', 'WishSurveyController@update');
     Route::post('wishsurvey', 'WishSurveyController@store');
 
-    Route::get('operator/:id', 'OperatorController@show');
+    Route::get('operator/{id}', 'OperatorController@show');
 
-    Route::get('homesidemenu/:id', 'HomeSideMenuController@show');
+    Route::get('homesidemenu/{id}', 'HomeSideMenuController@show');
 
-    Route::get('groupsidemenu/:id', 'GroupSideMenuController@show');
+    Route::get('groupsidemenu/{id}', 'GroupSideMenuController@show');
 
-    Route::get('Calendar/:id', 'CalendarController@show');
+    Route::get('Calendar/{id}', 'CalendarController@show');
 
-    Route::get('share/:id', 'SharController@show');
+    Route::get('share/{id}', 'SharController@show');
 
     Route::get('wishshift', 'WishShiftController@index');
 
