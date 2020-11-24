@@ -2,11 +2,9 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Articles;
-use App\ConfirmUsers;
-use App\Confirms;
-use App\Surveies;
-use App\GroupMembers;
+use App\Users;
+use \App\GroupMembers;
+use \App\Comfirms;
 use App\Http\Controllers\Controller;
 
 class CalenderController extends Controller
@@ -52,7 +50,27 @@ class CalenderController extends Controller
     {
         //詳細
         //get使います
-        $confirm_id = \App\ConfirmUsers::table('confirm_id')->get();
+        $groupmemberinfo = App\Users::where('user_id', $id)->get();
+        $groupid = $groupmemberinfo -> group_id;
+        $groupname = App\Group::select('name')->find($id);
+        $surveyid = \App\Surveies::pluck('id')
+        ->where('group_id', $groupid)
+        ->where('start_date',">", $request -> date)
+        ->where('end_date',"<", $request -> date)
+        ->get();
+        $confirminfo = \App\Confirms::pluck('id')
+        ->where('recruited_id', $surveyid)
+        ->where('status', false)
+        ->get();
+        $confirmid = $confirminfo -> id;
+        $confirmuserinfo = \App\ConfirmUsers::while('user_id', $id)
+        ->where('confirm_id', $confirmid);
+        $confirmid_2 = $confirmuserinfo -> confirm_id;
+        $confirmuser_start_at = $confirmuserinfo -> start_at;
+        $confirmuser_end_at = $confirmuserinfo -> end_at;
+        $confirmdate = \App\Confirms::pluck('date');
+        $arraycalendar = array($groupname,$confirmdate,$confirmuser_start_at,$confirmuser_end_at);
+        return json_encode($arraycalendar,JSON_PRETTY_PRINT);
     }
 
     /**
