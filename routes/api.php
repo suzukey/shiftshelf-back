@@ -35,6 +35,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
     Route::get('wishsurvey', 'WishSurveyController@index');
     Route::get('wishsurvey/:id', 'WishSurveyController@show');
     Route::patch('wishsurvey', 'WishSurveyController@update');
+    Route::post('wishsurvey', 'WishSurveyController@store');
 
     Route::get('operator/:id', 'OperatorController@show');
 
