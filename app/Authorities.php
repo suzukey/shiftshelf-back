@@ -12,10 +12,8 @@ class Authorities extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-    ];
-    public function PositionAuthorities(){
-        return $this->hasMany('\App\PositionAuthorities');
+    protected $fillable = [];
+    public function GroupMembers(){
+        return $this->hasMany('\App\GroupMembers');
     }
 }

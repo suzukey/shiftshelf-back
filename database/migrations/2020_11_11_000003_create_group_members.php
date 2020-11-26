@@ -21,7 +21,7 @@ class CreateGroupMembers extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->length(10); // ユーザーID
             $table->unsignedInteger('group_id')->length(10); // グループID
-            $table->unsignedInteger('position_id')->length(10); // 役職ID
+            $table->unsignedInteger('authority_id')->length(10); // 役職ID
 
             $table->foreign('user_id')
             ->references('id')
@@ -33,9 +33,9 @@ class CreateGroupMembers extends Migration
             ->on('groups')
             ->onDelete('cascade');
 
-            $table->foreign('position_id')
+            $table->foreign('authority_id')
             ->references('id')
-            ->on('positions')
+            ->on('authorities')
             ->onDelete('cascade');
         });
     }

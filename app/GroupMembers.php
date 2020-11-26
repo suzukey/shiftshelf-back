@@ -23,6 +23,6 @@ class GroupMembers extends Model
         return $this->belongsTo('App\Groups');
     }
     public function PositionAuthorities(){
-        return $this->belongsTo('App\PositionAuthorities');
+        return $this->belongsTo('App\Authorities');
     }
 }
