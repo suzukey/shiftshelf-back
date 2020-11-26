@@ -2,7 +2,8 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Users;
+use \App\Users;
+use \App\Groups;
 use \App\GroupMembers;
 use \App\Comfirms;
 use App\Http\Controllers\Controller;
@@ -50,9 +51,9 @@ class CalenderController extends Controller
     {
         //詳細
         //get使います
-        $groupmemberinfo = App\Users::where('user_id', $id)->get();
+        $groupmemberinfo = \App\Users::where('user_id', $id)->get();
         $groupid = $groupmemberinfo -> group_id;
-        $groupname = App\Group::select('name')->find($id);
+        $groupname = \App\Group::select('name')->find($id);
         $surveyid = \App\Surveies::pluck('id')
         ->where('group_id', $groupid)
         ->where('start_date',">", $request -> date)
