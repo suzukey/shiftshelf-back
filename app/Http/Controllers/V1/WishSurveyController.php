@@ -40,15 +40,17 @@ class WishSurveyController extends Controller
     {
         // //新規作成
         $makesurvey = new \App\Surveies();
+        $temporary = new \App\Temporaries();
         $today = date("Y-m-d H:i:s");
+        // $makesurvey->fill( $request->all() )->save();
+        $makesurvey -> recruitname = $request->recruitname;
+        $makesurvey -> start_date = $request ->start_date;
+        $makesurvey -> end_date = $request->end_date;
         $makesurvey -> recruitmentstarted = $today;
-        $makesurvey->fill( $request->all() )->save();
-        // $makesurvey -> recruitname = $request->recruitname;
-        // $makesurvey -> start_date = $request ->start_date;
-        // $makesurvey -> end_date = $request->end_date;
-        // $makesurvey -> group_id = $request->group_id;
-        // $makesurvey -> deadline = $request ->deadline;
-        // $makesurvey -> save();
+        $makesurvey -> deadline = $request ->deadline;
+        $makesurvey -> group_id = $request->id;
+        $temporary -> 
+        $makesurvey -> save();
         return new JsonResponse(
             [
                 'success' => "OK",
