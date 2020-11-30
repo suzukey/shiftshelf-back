@@ -51,16 +51,10 @@ class HomeSideMenuController extends Controller
         $userid = $userinfo -> id;
         $username = $userinfo -> username ;
         $usericon = $userinfo -> icon_url ;
+        $usergroup = \App\GroupMembers::where('user_id', $id)->get();
 
-        $usergroup = \App\Users::with(['GroupMember' => function($q){
-            $q->where('user_id', '=', '$userid');
-        }])->get();
-        $groupinfo = \App\GroupMembers::with(['Group' => function($q2){
-            $q2->where('group_id','=','$userid');
-        }])->get();
-
-        $arrayGrouSide = array($username , $usericon , $groupinfo);
-        return json_encode($arrayGrouSide,JSON_PRETTY_PRINT);
+        $arrayHomeSide = array($username , $usericon , $usergroup);
+        return json_encode($arrayHomeSide,JSON_PRETTY_PRINT);
     }
 
     /**
