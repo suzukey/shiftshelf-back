@@ -25,7 +25,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
 
     Route::get('groupmember', 'GroupMemberController@index');
     Route::post('groupmember', 'GroupMemberController@store');
-    Route::delete('groupmember', 'GroupMemberController@destroy');
+    Route::delete('groupmember/{id}', 'GroupMemberController@destroy');
 
     Route::get('makeshift', 'MakeShiftController@index');
     Route::post('makeshift', 'MakeShiftController@store');
@@ -49,5 +49,9 @@ Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
 
     Route::get('wishshift', 'WishShiftController@index');
 
-    Route::get('position', 'PositionController@index');
+    Route::get('authority', 'AuthorityController@index');
+    Route::get('authority/{id}', 'AuthorityController@show');
+    Route::patch('authority/{id}', 'AuthorityController@update');
+    Route::post('authority', 'AuthorityController@store');
+    Route::delete('authority/{id}', 'AuthorityController@destroy');
 });
