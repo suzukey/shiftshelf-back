@@ -4,10 +4,10 @@ use Illuminate\Http\JsonResponse;
 
 use Illuminate\Http\Request;
 use App\Articles;
-use App\PositionAuthorities;
+use App\Authorities;
 use App\Http\Controllers\Controller;
 
-class PositionAuthorityController extends Controller
+class AuthorityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,14 +38,20 @@ class PositionAuthorityController extends Controller
     public function store(Request $request)
     {
         //新規作成
-        $PositionAuthority = new \app\PositionAuthorities;
-        $PositionAuthority->position_id = $request->position_id;
-        $PositionAuthority->authority_id = $request->authority_id;
-        $PositionAuthority->save();
+        $Authority = new \App\Authorities;
+        $Authority -> name = $request -> name;
+        $Authority -> recruitmentTarget = $request -> recruitmentTarget;
+        $Authority -> group = $request -> group;
+        $Authority -> member = $request -> member;
+        $Authority -> authority = $request -> authority;
+        $Authority -> edit = $request -> edit;
+        $Authority -> recruitment = $request -> recruitment;
+        $Authority -> view = $request -> view;
+        $Authority->save();
         return new JsonResponse(
             [
                 'success' => "OK",
-                "data" => $PositionAuthority->toJSON()
+                "data" => $Authority->toJSON()
             ],
             201 );
 
@@ -60,8 +66,8 @@ class PositionAuthorityController extends Controller
     public function show($id)
     {
         //詳細
-        $PositionAuthority = PositionAuthorities::findOrFail($id);
-        return json_encode($PositionAuthority,JSON_PRETTY_PRINT);
+        $Authority = Authorities::findOrFail($id);
+        return json_encode($Authority,JSON_PRETTY_PRINT);
     }
 
     /**
@@ -85,14 +91,14 @@ class PositionAuthorityController extends Controller
     public function update(Request $request, $id)
     {
         //更新
-        $PositionAuthority = \App\PositionAuthorities::findOrFail($id);
-        $PositionAuthority -> position_id = $request ->position_id;
-        $PositionAuthority -> authority_id = $request ->authority_id;
-        $PositionAuthority ->save();
+        $Authority = \App\Authorities::findOrFail($id);
+        $Authority -> position_id = $request ->position_id;
+        $Authority -> authority_id = $request ->authority_id;
+        $Authority ->save();
         return new JsonResponse(
             [
                 'success' => "OK",
-                "data" => $PositionAuthority->toJSON()
+                "data" => $Authority->toJSON()
             ],
             201 );
     }
@@ -106,12 +112,12 @@ class PositionAuthorityController extends Controller
     public function destroy($id)
     {
         //削除
-        $PositionAuthority = \App\PositionAuthorities ::findOrFail($id);
-        $PositionAuthority -> delete();
+        $Authority = \App\Authorities ::findOrFail($id);
+        $Authority -> delete();
         return new JsonResponse(
             [
                 'success' => "OK",
-                "data" => $PositionAuthority->toJSON()
+                "data" => $Authority->toJSON()
             ],
             201 );
     }

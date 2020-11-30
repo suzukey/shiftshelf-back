@@ -12,7 +12,9 @@ class Authorities extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name','recruitmentTarget','group','member','authority','edit','recruitment','view'
+    ];
     public function GroupMembers(){
         return $this->hasMany('\App\GroupMembers');
     }

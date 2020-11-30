@@ -20,7 +20,7 @@ class CreateAuthorities extends Migration
         Schema::create('authorities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name'); // 役職名
-            $table->integer('sequence'); // 順序
+            // $table->integer('sequence'); // 順序
             $table->boolean('recruitmentTarget');//シフト募集対象に含めるか
             $table->boolean('group');//グループ情報の管理
             $table->boolean('member');//参加者の管理
