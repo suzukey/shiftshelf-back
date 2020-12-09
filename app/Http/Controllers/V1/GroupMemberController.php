@@ -5,8 +5,8 @@ use Illuminate\Http\JsonResponse;
 
 use Illuminate\Http\Request;
 use App\GroupMembers;
+use App\Groups;
 use App\Http\Controllers\Controller;
-
 class GroupMemberController extends Controller
 {
     /**
@@ -62,10 +62,11 @@ class GroupMemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
+        $groupmember = \App\GroupMembers ::orderBy('authority_id', 'asc')->get();
+        return json_encode($groupmember, JSON_PRETTY_PRINT);
     }
-
     /**
      * Show the form for editing the specified resource.
      *

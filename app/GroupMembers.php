@@ -25,4 +25,5 @@ class GroupMembers extends Model
     public function PositionAuthorities(){
         return $this->belongsTo('App\Authorities');
     }
+
 }

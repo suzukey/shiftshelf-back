@@ -4,6 +4,8 @@ namespace App\Http\Controllers\V1;
 use Illuminate\Http\Request;
 use App\Users;
 use App\Groups;
+use App\GroupMembers;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use finfo;
 
@@ -14,9 +16,10 @@ class OperatorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //一覧
+
     }
 
     /**
@@ -46,13 +49,15 @@ class OperatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id , Request $request)
+    public function show(Request $request)
     {
-        //詳細
+        // 詳細
         $operater_user = $request -> user_id;
         $operater_group = $request -> group_id;
-        $operater = array($operater_user,$operater_group);
-        return json_encode($operater,JSON_PRETTY_PRINT);
+        $groupmember = \App\GroupMembers ::where('group_id',$operater_group)->where('user_id', $operater_user)->get();
+        return json_encode($groupmember, JSON_PRETTY_PRINT);
+        // $operater_authority = \App\GroupMembers::where('user_id', $operater_user)->andwhere('group_id', $operater_group) -> get();
+        // return json_encode($operater_authority,JSON_PRETTY_PRINT);
     }
 
     /**
