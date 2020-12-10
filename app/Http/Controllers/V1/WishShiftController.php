@@ -15,8 +15,10 @@ class WishShiftController extends Controller
     public function index()
     {
         //一覧
-        $surveylist = \App\Surveies::orderBy('deadline', 'asc')->get();
-        return json_encode($surveylist,JSON_PRETTY_PRINT);
+        $today = now();
+        $surveylist = \App\Surveies:: where('deadline','<',$today)->orderBy('deadline', 'asc')->get();
+        $recruitname = $surveylist -> recruitname;
+        return json_encode($recruitname,JSON_PRETTY_PRINT);
     }
 
     /**

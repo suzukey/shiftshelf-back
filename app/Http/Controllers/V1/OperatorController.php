@@ -19,6 +19,10 @@ class OperatorController extends Controller
     public function index(Request $request)
     {
         //一覧
+        $operater_user = $request -> user_id;
+        $operater_group = $request -> group_id;
+        $groupmember = \App\GroupMembers ::where('group_id',$operater_group)->where('user_id', $operater_user)->get('authority_id');
+        return json_encode($groupmember, JSON_PRETTY_PRINT);
 
     }
 
@@ -52,12 +56,6 @@ class OperatorController extends Controller
     public function show(Request $request)
     {
         // 詳細
-        $operater_user = $request -> user_id;
-        $operater_group = $request -> group_id;
-        $groupmember = \App\GroupMembers ::where('group_id',$operater_group)->where('user_id', $operater_user)->get();
-        return json_encode($groupmember, JSON_PRETTY_PRINT);
-        // $operater_authority = \App\GroupMembers::where('user_id', $operater_user)->andwhere('group_id', $operater_group) -> get();
-        // return json_encode($operater_authority,JSON_PRETTY_PRINT);
     }
 
     /**

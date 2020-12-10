@@ -85,9 +85,6 @@ class UserController extends Controller
         // findOrFail：モデルが見つからない時に、ModelNotFoundExceptionを投げる
         $user = \App\Users::findOrFail($id);
         $user->fill( $request->all() )->save();
-        // $user -> username = $request ->username;
-        // $user -> icon_url = $request ->icon_url;
-        // $user ->save();
         return new JsonResponse(
             [
                 'success' => "OK",

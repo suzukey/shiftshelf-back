@@ -23,8 +23,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
     Route::patch('group/{id}', 'GroupController@update');
     Route::delete('group', 'GroupController@destroy');
 
-    // Route::get('groupmember', 'GroupMemberController@index');
-    // Route::get('groupmember/group/{group}', 'GroupMemberController@show');
+    Route::get('groupmember', 'GroupMemberController@index');
     Route::post('groupmember', 'GroupMemberController@store');
     Route::delete('groupmember/{id}', 'GroupMemberController@destroy');
 
@@ -38,7 +37,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
     Route::patch('wishsurvey', 'WishSurveyController@update');
     Route::post('wishsurvey', 'WishSurveyController@store');
 
-    Route::get('operator', 'OperatorController@show');
+    Route::get('operator', 'OperatorController@index');
 
     Route::get('homesidemenu/{id}', 'HomeSideMenuController@show');
 

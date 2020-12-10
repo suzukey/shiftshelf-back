@@ -92,9 +92,7 @@ class AuthorityController extends Controller
     {
         //更新
         $Authority = \App\Authorities::findOrFail($id);
-        $Authority -> position_id = $request ->position_id;
-        $Authority -> authority_id = $request ->authority_id;
-        $Authority ->save();
+        $Authority->fill( $request->all() )->save();
         return new JsonResponse(
             [
                 'success' => "OK",
