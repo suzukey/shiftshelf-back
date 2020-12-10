@@ -14,11 +14,13 @@ class GroupMemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //一覧
         // 役職IDの昇順に並び替える
-        $groupmember = \App\GroupMembers::orderBy('authority_id', 'asc')->get();
+        $group_id = $request -> group_id;
+        $groupmember = new \App\GroupMembers();
+        $groupmember = $groupmember->where('group_id','=',$group_id)->orderBy('authority_id', 'asc')->get();
         return json_encode($groupmember, JSON_PRETTY_PRINT);
     }
 
@@ -64,8 +66,7 @@ class GroupMemberController extends Controller
      */
     public function show()
     {
-        $groupmember = \App\GroupMembers ::orderBy('authority_id', 'asc')->get();
-        return json_encode($groupmember, JSON_PRETTY_PRINT);
+
     }
     /**
      * Show the form for editing the specified resource.
