@@ -1,9 +1,6 @@
 <?php
-
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
-
 class Wishes extends Model
 {
     public $timestamps = false;
@@ -13,12 +10,12 @@ class Wishes extends Model
      * @var array
      */
     protected $fillable = [
-        'date',
+        'date',//日時
     ];
     public function Surveies(){
-        return $this->belongsTo('App\Surveies');
+        return $this->belongsTo('App\Surveies');//外部キー(シフト希望id)
     }
     public function WishUsers(){
-        return $this->hasMany('\App\WishUsers');
+        return $this->hasMany('\App\WishUsers');//シフト希望ユーザー
     }
 }

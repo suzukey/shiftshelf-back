@@ -1,9 +1,6 @@
 <?php
-
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
-
 class Confirms extends Model
 {
     public $timestamps = false;
@@ -13,9 +10,10 @@ class Confirms extends Model
      * @var array
      */
     protected $fillable = [
-        'status',
+        'date',//日付
+        'status',//確定ステータス
     ];
     public function Surveies(){
-        return $this->belongsTo('App\Surveies');
+        return $this->belongsTo('App\Surveies');//外部キー(シフト募集id)
     }
 }

@@ -1,11 +1,8 @@
 <?php
-
 namespace App;
-
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
 class Users extends Authenticatable
 {
     use Notifiable;
@@ -17,9 +14,9 @@ class Users extends Authenticatable
      */
     // レコード挿入を許可するカラムのこと↓
     protected $fillable = [
-        'username', 'icon_url',
+        'username',//ユーザー名
+        'icon_url',//ユーザーアイコン
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -28,7 +25,6 @@ class Users extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
     /**
      * The attributes that should be cast to native types.
      *
@@ -37,14 +33,13 @@ class Users extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
     public function GroupMembers(){
-        return $this->hasMany('\App\GroupMembers');
+        return $this->hasMany('\App\GroupMembers');//グループメンバー
     }
     public function WishUsers(){
-        return $this->hasMany('\App\WishUsers');
+        return $this->hasMany('\App\WishUsers');//シフト希望ユーザー
     }
     public function ConfirmUsers(){
-        return $this->hasMany('\App\ConfirmUsers');
+        return $this->hasMany('\App\ConfirmUsers');//確定シフトユーザー
     }
 }
