@@ -1,10 +1,8 @@
 <?php
 namespace App\Http\Controllers\V1;
-
 use Illuminate\Http\Request;
-use App\Users;
 use App\Http\Controllers\Controller;
-
+use App\Users;//ユーザー
 class HomeSideMenuController extends Controller
 {
     /**
@@ -12,32 +10,20 @@ class HomeSideMenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //一覧
-    }
-
+    public function index(){}
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
+    public function create(){}
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //新規作成
-    }
-
+    public function store(Request $request){}
     /**
      * Display the specified resource.
      *
@@ -45,29 +31,22 @@ class HomeSideMenuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //詳細
-        $userinfo = \App\Users::find($id);
-        $userid = $userinfo -> id;
-        $username = $userinfo -> username ;
-        $usericon = $userinfo -> icon_url ;
-        $usergroup = \App\GroupMembers::where('user_id', $id)->get();
-
+    {//詳細
+        $userinfo = \App\Users::find($id);//ユーザーid
+        $userid = $userinfo -> id;//ユーザーid
+        $username = $userinfo -> username ;//ユーザー名
+        $usericon = $userinfo -> icon_url ;//ユーザーアイコン
+        $usergroup = \App\GroupMembers::where('user_id', $id)->get();//ユーザーidが一致するものをグループメンバーから取り出す
         $arrayHomeSide = array($username , $usericon , $usergroup);
         return json_encode($arrayHomeSide,JSON_PRETTY_PRINT);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
-
+    public function edit($id){}
     /**
      * Update the specified resource in storage.
      *
@@ -75,19 +54,12 @@ class HomeSideMenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //更新
-    }
-
+    public function update(Request $request, $id){}
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //削除
-    }
+    public function destroy($id){}
 }

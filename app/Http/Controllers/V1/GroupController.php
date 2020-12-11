@@ -1,11 +1,9 @@
 <?php
 namespace App\Http\Controllers\V1;
 use Illuminate\Http\JsonResponse;
-
 use Illuminate\Http\Request;
-use App\Groups;
 use App\Http\Controllers\Controller;
-
+use App\Groups;//グループ
 class GroupController extends Controller
 {
     /**
@@ -13,22 +11,13 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //一覧
-    }
-
+    public function index(){}
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-
-    }
-
+    public function create(){}
     /**
      * Store a newly created resource in storage.
      *
@@ -36,24 +25,21 @@ class GroupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //新規作成
-        $group = new Groups;
-        $group->groupname = $request->groupname;
-        $group->icon_url = $request->icon_url;
-        $group->regular_opening_hour = $request->regular_closed_hour;
-        $group->regular_closed_hour = $request->regular_closed_hour;
-        $group->regular_holiday = $request->regular_holiday;
-        $group->save();
+    {//新規作成
+        $group = new Groups;//グループ
+        $group->groupname = $request->groupname;//グループ名
+        $group->icon_url = $request->icon_url;//グループアイコン
+        $group->regular_opening_hour = $request->regular_closed_hour;//始業時間
+        $group->regular_closed_hour = $request->regular_closed_hour;//終業時間
+        $group->regular_holiday = $request->regular_holiday;//定休日
+        $group->save();//保存
         return new JsonResponse(
             [
                 'success' => "OK",
                 "data" => $group->toJSON()
             ],
             201 );
-
     }
-
     /**
      * Display the specified resource.
      *
@@ -61,23 +47,18 @@ class GroupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //詳細
-        $group = Groups::findOrFail($id);
+    {//詳細
+        // findOrFail：モデルが見つからない時に、ModelNotFoundExceptionを投げる
+        $group = Groups::findOrFail($id);//グループid
         return json_encode($group,JSON_PRETTY_PRINT);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
-
+    public function edit($id){}
     /**
      * Update the specified resource in storage.
      *
@@ -86,16 +67,10 @@ class GroupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //更新
-        $group = Groups::findOrFail($id);
-        $group->fill( $request->all() )->save();
-        // $group -> groupname = $request ->groupname;
-        // $group -> icon_url = $request ->icon_url;
-        // $group -> regular_opening_hour = $request ->regular_opening_hour;
-        // $group -> regular_closed_hour = $request ->regular_closed_hour;
-        // $group -> regular_holiday = $request ->regular_holiday;
-        // $group ->save();
+    {//更新
+        // findOrFail：モデルが見つからない時に、ModelNotFoundExceptionを投げる
+        $group = Groups::findOrFail($id);//グループid
+        $group->fill( $request->all() )->save();//更新内容すべてを保存
         return new JsonResponse(
             [
                 'success' => "OK",
@@ -103,7 +78,6 @@ class GroupController extends Controller
             ],
             201 );
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -111,9 +85,15 @@ class GroupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //削除
-        $group = \App\Groups ::findOrFail($id);
-        $group -> delete();
+    {//削除
+        // findOrFail：モデルが見つからない時に、ModelNotFoundExceptionを投げる
+        $group = \App\Groups ::findOrFail($id);//グループid
+        $group -> delete();//削除
+        return new JsonResponse(
+            [
+                'success' => "OK",
+                "data" => $group->toJSON()
+            ],
+            201 );
     }
 }
