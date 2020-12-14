@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreateSurveies extends Migration
 {
     /**
@@ -14,8 +12,7 @@ class CreateSurveies extends Migration
     public function up()
     {
         if (Schema::hasTable('surveies')) {
-            // テーブルが存在していればリターン
-            return;
+            return;// テーブルが存在していればリターン
         }
         Schema::create('surveies', function (Blueprint $table) {
             $table->increments('id');
@@ -25,14 +22,12 @@ class CreateSurveies extends Migration
             $table->date('recruitmentstarted'); // 募集開始日
             $table->datetime('deadline'); // 募集締め切り日
             $table->unsignedInteger('group_id')->length(10); // グループID
-
-            $table->foreign('group_id')
+            $table->foreign('group_id') // 外部キー設定
             ->references('id')
             ->on('groups')
             ->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -43,3 +38,4 @@ class CreateSurveies extends Migration
         Schema::dropIfExists('surveies');
     }
 }
+?>

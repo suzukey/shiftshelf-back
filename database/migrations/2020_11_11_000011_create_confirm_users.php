@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreateConfirmUsers extends Migration
 {
     /**
@@ -14,8 +12,7 @@ class CreateConfirmUsers extends Migration
     public function up()
     {
         if (Schema::hasTable('confirm_users')) {
-            // テーブルが存在していればリターン
-            return;
+            return;// テーブルが存在していればリターン
         }
         Schema::create('confirm_users', function (Blueprint $table) {
             $table->increments('id');
@@ -23,14 +20,12 @@ class CreateConfirmUsers extends Migration
             $table->unsignedInteger('user_id')->length(10); // ユーザーID
             $table->time('start_at')->nullable(); // 開始時刻
             $table->time('end_at')->nullable(); // 終了時刻
-
             $table->foreign('confirm_id') // 外部キー設定
             ->references('id')
             ->on('confirms')
             ->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -41,3 +36,4 @@ class CreateConfirmUsers extends Migration
         Schema::dropIfExists('confirm_users');
     }
 }
+?>

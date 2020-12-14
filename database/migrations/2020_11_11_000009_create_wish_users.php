@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreateWishUsers extends Migration
 {
     /**
@@ -14,8 +12,7 @@ class CreateWishUsers extends Migration
     public function up()
     {
         if (Schema::hasTable('wish_users')) {
-            // テーブルが存在していればリターン
-            return;
+            return;// テーブルが存在していればリターン
         }
         Schema::create('wish_users', function (Blueprint $table) {
             $table->increments('id');
@@ -23,19 +20,16 @@ class CreateWishUsers extends Migration
             $table->unsignedInteger('user_id')->length(10); // ユーザーID
             $table->time('start_at')->nullable(); // 開始時刻
             $table->time('end_at')->nullable(); // 終了時刻
-
             $table->foreign('wish_id') // 外部キー設定
                   ->references('id')
                   ->on('wishes')
                   ->onDelete('cascade');
-
             $table->foreign('user_id') // 外部キー設定
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -46,3 +40,4 @@ class CreateWishUsers extends Migration
         Schema::dropIfExists('wish_users');
     }
 }
+?>

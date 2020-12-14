@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreateGroupMembers extends Migration
 {
     /**
@@ -14,32 +12,27 @@ class CreateGroupMembers extends Migration
     public function up()
     {
         if (Schema::hasTable('group_members')) {
-            // テーブルが存在していればリターン
-            return;
+            return; // テーブルが存在していればリターン
         }
         Schema::create('group_members', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->length(10); // ユーザーID
             $table->unsignedInteger('group_id')->length(10); // グループID
             $table->unsignedInteger('authority_id')->length(10); // 役職ID
-
-            $table->foreign('user_id')
+            $table->foreign('user_id') // 外部キー設定
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
-
-            $table->foreign('group_id')
+            $table->foreign('group_id') // 外部キー設定
             ->references('id')
             ->on('groups')
             ->onDelete('cascade');
-
-            $table->foreign('authority_id')
+            $table->foreign('authority_id') // 外部キー設定
             ->references('id')
             ->on('authorities')
             ->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -50,3 +43,4 @@ class CreateGroupMembers extends Migration
         Schema::dropIfExists('group_members');
     }
 }
+?>
