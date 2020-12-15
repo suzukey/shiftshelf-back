@@ -63,3 +63,4 @@ class HomeSideMenuController extends Controller
      */
     public function destroy($id){}
 }
+?>

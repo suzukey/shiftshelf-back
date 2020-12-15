@@ -18,7 +18,8 @@ class OperatorController extends Controller
     {//一覧
         $operater_user = $request -> user_id;//ユーザーid
         $operater_group = $request -> group_id;//グループid
-        $groupmember = \App\GroupMembers ::where('group_id',$operater_group)->where('user_id', $operater_user)->get('authority_id');//グループidとユーザーidが一致する権限idをグループメンバーから取り出す
+        $groupmember = \App\GroupMembers ::where('group_id',$operater_group)
+                                            ->where('user_id', $operater_user)->get('authority_id');//グループidとユーザーidが一致する権限idをグループメンバーから取り出す
         return json_encode($groupmember, JSON_PRETTY_PRINT);
     }
     /**
@@ -64,3 +65,4 @@ class OperatorController extends Controller
      */
     public function destroy($id){}
 }
+?>

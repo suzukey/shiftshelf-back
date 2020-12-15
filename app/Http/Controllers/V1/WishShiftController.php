@@ -13,7 +13,8 @@ class WishShiftController extends Controller
     public function index()
     {//一覧
         $today = now();//現在時刻を取得
-        $surveylist = \App\Surveies:: where('deadline','<',$today)->orderBy('deadline', 'asc')->get('recruitname');//募集締め切り日時を過ぎていないシフト募集を締め切り日時の昇順に取り出す
+        $surveylist = \App\Surveies:: where('deadline','<',$today)
+                                        ->orderBy('deadline', 'asc')->get('recruitname');//募集締め切り日時を過ぎていないシフト募集を締め切り日時の昇順に取り出す
         return json_encode($surveylist,JSON_PRETTY_PRINT);
     }
     /**
@@ -59,3 +60,4 @@ class WishShiftController extends Controller
      */
     public function destroy($id){}
 }
+?>
