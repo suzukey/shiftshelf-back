@@ -39,7 +39,6 @@ class GroupSideMenuController extends Controller
         $userinfo = \App\Users::find($operater_user);
         $username = $userinfo -> username ;//ユーザー名
         $usericon = $userinfo -> icon_url ;//ユーザーアイコン
-
         $groupname = \App\Groups ::where('id',$operater_group)->get('groupname');//グループ名
         $authority = \App\GroupMembers ::where('group_id',$operater_group)
                                             ->where('user_id', $operater_user)->get('authority_id');//グループidとユーザーidが一致する権限idをグループメンバーから取り出す
@@ -69,3 +68,4 @@ class GroupSideMenuController extends Controller
      */
     public function destroy($id){}
 }
+?>
