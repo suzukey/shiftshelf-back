@@ -44,7 +44,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
 // ホームサイドメニュー
     Route::get('homesidemenu/{id}', 'HomeSideMenuController@show');
 // グループサイドメニュー
-    Route::get('groupsidemenu/{id}', 'GroupSideMenuController@show');
+    Route::get('groupsidemenu', 'GroupSideMenuController@show');
 // 権限
     Route::get('authority', 'AuthorityController@index');
     Route::get('authority/{id}', 'AuthorityController@show');
