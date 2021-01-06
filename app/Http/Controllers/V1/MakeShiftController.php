@@ -1,12 +1,10 @@
 <?php
 namespace App\Http\Controllers\V1;
 use Illuminate\Http\JsonResponse;
-
 use Illuminate\Http\Request;
-use App\Articles;
-use App\Confirms;
 use App\Http\Controllers\Controller;
-
+use Carbon\Carbon;
+use App\Surveies;//シフト募集
 class MakeShiftController extends Controller
 {
     /**
@@ -14,23 +12,21 @@ class MakeShiftController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //一覧
-        $shiftlist = \App\Confirms::orderBy('date','asc')->get();
-        return json_encode($shiftlist,JSON_PRETTY_PRINT);
+    public function index(Request $request)
+    {//一覧　募集締め切りを過ぎたシフト一覧
+        $group_id = $request -> group_id;//グループidを取得
+        $surveies = new \App\Surveies();//シフト募集
+        $now = Carbon::now()->toDateString();//現在時刻を取得
+        $surveies = $surveies->where('group_id','=',$group_id)->where('deadline', '<=' ,$now)->get();// グループidが一致しかつ募集締め切りを過ぎているもの
+        $surveieslist = \App\Surveies::orderBy('id','asc')->get();//シフト募集idの昇順
+        return json_encode($surveieslist,JSON_PRETTY_PRINT);
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
+    public function create(){}
     /**
      * Store a newly created resource in storage.
      *
@@ -38,12 +34,11 @@ class MakeShiftController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-// 未完
-        //新規作成
+    {//新規作成
         $makeshift = new \App\Confirms();
-        $makeshift -> recruited_id = $request->recruited_id;//<- シフト募集IDを取る
-        $makeshift -> date = $request->date;
+        $makeshift -> recruited_id = $request->recruited_id;//シフト募集ID
+        $makeshift -> date = $request->date;//日付
+        // $makeshift -> status = true;
         $makeshift -> save();
         return new JsonResponse(
             [
@@ -52,29 +47,20 @@ class MakeShiftController extends Controller
             ],
             201 );
     }
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //詳細
-    }
-
+    public function show($id){}
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
-
+    public function edit($id){}
     /**
      * Update the specified resource in storage.
      *
@@ -83,8 +69,7 @@ class MakeShiftController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //更新
+    {//更新
         $updateshift = \App\Confirms::findOrFail($id);
         $updateshift -> recruited_id = $request -> recruited_id;
         $updateshift -> date = $request->date;
@@ -96,7 +81,6 @@ class MakeShiftController extends Controller
             ],
             201 );
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -104,8 +88,7 @@ class MakeShiftController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //削除
+    {//削除
         $deleteshift = \App\Confirms ::findOrFail($id);
         $deleteshift -> delete();
         return new JsonResponse(
@@ -116,3 +99,6 @@ class MakeShiftController extends Controller
             201 );
     }
 }
+// シフト作成 0106
+// 募集idを選択した後、日付の一覧を表示するならもうひとつコントローラーを作らないといけない？
+// DBに日付をまとめて格納したい → 新規作成のタイミング
