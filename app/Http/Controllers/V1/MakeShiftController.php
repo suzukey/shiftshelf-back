@@ -13,7 +13,7 @@ class MakeShiftController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {//一覧　募集締め切りを過ぎたシフト一覧
+    {//一覧
         $group_id = $request -> group_id;//グループidを取得
         $surveies = new \App\Surveies();//シフト募集
         $now = Carbon::now()->toDateString();//現在時刻を取得
@@ -38,7 +38,7 @@ class MakeShiftController extends Controller
         $makeshift = new \App\Confirms();
         $makeshift -> recruited_id = $request->recruited_id;//シフト募集ID
         $makeshift -> date = $request->date;//日付
-        // $makeshift -> status = true;
+        $makeshift -> status = $request -> status;//確定ステータスfalse:下書き
         $makeshift -> save();
         return new JsonResponse(
             [
@@ -71,8 +71,8 @@ class MakeShiftController extends Controller
     public function update(Request $request, $id)
     {//更新
         $updateshift = \App\Confirms::findOrFail($id);
-        $updateshift -> recruited_id = $request -> recruited_id;
-        $updateshift -> date = $request->date;
+        $updateshift -> date = $request->date;//日付
+        $updateshift -> status = $request -> status;//確定ステータスfalse:下書き
         $updateshift ->save();
         return new JsonResponse(
             [
@@ -99,6 +99,3 @@ class MakeShiftController extends Controller
             201 );
     }
 }
-// シフト作成 0106
-// 募集idを選択した後、日付の一覧を表示するならもうひとつコントローラーを作らないといけない？
-// DBに日付をまとめて格納したい → 新規作成のタイミング
