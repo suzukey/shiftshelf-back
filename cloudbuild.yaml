@@ -3,7 +3,7 @@ steps:
     name: 'gcr.io/cloud-builders/docker'
     args: [
       'build',
-      '-f', '.cloud/docker/php/Dockerfile',
+      '-f', 'docker/laravel/Dockerfile',
       '-t', 'gcr.io/${PROJECT_ID}/${_SERVICE}',
       '.'
     ]
