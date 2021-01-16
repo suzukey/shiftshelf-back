@@ -13,9 +13,11 @@ RUN composer install \
     --prefer-dist
 
 FROM php:7.4.8-apache-buster
-RUN docker-php-ext-install pdo pdo_mysql
+WORKDIR /var/www/
 
 EXPOSE 8080
+
+RUN docker-php-ext-install pdo pdo_mysql
 
 COPY . /var/www/
 COPY --from=build /app/vendor/ /var/www/vendor/
