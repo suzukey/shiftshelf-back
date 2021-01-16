@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
+// テスト
+    Route::get('/', 'TestController@index');
 // ユーザー
     Route::post('user', 'UserController@store');
     Route::patch('user/{id}', 'UserController@update');
