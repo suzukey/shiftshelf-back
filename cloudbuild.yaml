@@ -20,7 +20,7 @@ steps:
       '-e', 'PROJECT_ID=${PROJECT_ID}',
       '-e', 'APP_ENV=${_APP_ENV}',
       '-e', 'APP_DEBUG=${_APP_DEBUG}',
-      '-e', 'DB_CONNECTION={_DB_CONNECTION}',
+      '-e', 'DB_CONNECTION=${_DB_CONNECTION}',
       '-e', 'DB_DATABASE=${_DB_DATABASE}',
       '-e', 'DB_USERNAME=${_DB_USERNAME}',
       '-e', 'DB_PASSWORD=${_DB_PASSWORD}',
