@@ -15,20 +15,20 @@ return [
     |
     */
 
-    'paths' => ['api/*'],
+    'paths' => ['*'],    //許可するパスの設定
 
-    'allowed_methods' => ['*'],
+    'allowed_methods' => ['*'],    //許可するメソッドの設定
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['*'],    //許可するドメインの設定
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => [],    //許可するドメインのパターン
 
-    'allowed_headers' => ['*'],
+    'allowed_headers' => ['*'],    //許可するヘッダーの設定
 
-    'exposed_headers' => [],
+    'exposed_headers' => false,    //レスポンスヘッダーの公開指定
 
-    'max_age' => 0,
+    'max_age' => false,    //ブラウザのキャッシュの保管期間
 
-    'supports_credentials' => false,
+    'supports_credentials' => false,    //クッキーなどの認証の許可
 
 ];
