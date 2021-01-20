@@ -3,9 +3,11 @@ namespace App\Http\Controllers\V1;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
-use App\Surveies;//シフト募集
-class MakeShiftController extends Controller
+use App\Wishes;//シフト希望
+
+use function GuzzleHttp\Promise\all;
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +16,13 @@ class MakeShiftController extends Controller
      */
     public function index(Request $request)
     {//一覧
-        $group_id = $request -> group_id;//グループidを取得
-        $surveies = new \App\Surveies();//シフト募集
-        $now = Carbon::now()->toDateString();//現在時刻を取得
-        $surveies = $surveies->where('group_id','=',$group_id)->where('deadline', '<=' ,$now)->get();// グループidが一致しかつ募集締め切りを過ぎているもの
-        $surveieslist = \App\Surveies::orderBy('id','asc')->get();//シフト募集idの昇順
-        return json_encode($surveieslist,JSON_PRETTY_PRINT);
-    }
+        $wish_recruitedid = $request->$recruited_id;
+        $wish_userid = $request->$user_id;
+        $wish = \App\Wishes ::where('recruited_id',$wish_recruitedid)
+                                            ->where('user_id', $wish_userid)->get(all());//シフト募集idとユーザーidが一致するものを取り出す
+
+       return json_encode($wish, JSON_PRETTY_PRINT);
+    }E
     /**
      * Show the form for creating a new resource.
      *
@@ -34,16 +36,18 @@ class MakeShiftController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {//新規作成
-        $makeshift = new \App\Confirms();
-        $makeshift -> recruited_id = $request->recruited_id;//シフト募集ID
-        $makeshift -> date = $request->date;//日付
-        $makeshift -> status = $request -> status;//確定ステータスfalse:下書き
-        $makeshift -> save();
+    { //新規作成
+        $wish = new \App\Wishes;//シフト募集
+        $wish -> recruited_id = $request->recruited_id;//シフト募集ID
+        $wish -> user_id = $request ->user_id;//ユーザーID
+        $wish -> date = $request -> date;//日時
+        $wish -> start_at = $request -> start_at;//開始時刻
+        $wish -> end_at = $request -> end_at;//終了時刻
+        $wish -> save();//保存
         return new JsonResponse(
             [
                 'success' => "OK",
-                "data" => $makeshift->toJSON()
+                "data" => $wish->toJSON()
             ],
             201 );
     }
@@ -70,14 +74,13 @@ class MakeShiftController extends Controller
      */
     public function update(Request $request, $id)
     {//更新
-        $updateshift = \App\Confirms::findOrFail($id);
-        $updateshift -> date = $request->date;//日付
-        $updateshift -> status = $request -> status;//確定ステータスfalse:下書き
-        $updateshift ->save();
+        // findOrFail：モデルが見つからない時に、ModelNotFoundExceptionを投げる
+        $wish = \App\Wishes::findOrFail($id);//シフト希望id
+        $wish->fill( $request->all() )->save();//変更内容すべてを保存
         return new JsonResponse(
             [
                 'success' => "OK",
-                "data" => $updateshift->toJSON()
+                "data" => $wish->toJSON()
             ],
             201 );
     }
@@ -87,15 +90,6 @@ class MakeShiftController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {//削除
-        $deleteshift = \App\Confirms ::findOrFail($id);
-        $deleteshift -> delete();
-        return new JsonResponse(
-            [
-                'success' => "OK",
-                "data" => $deleteshift->toJSON()
-            ],
-            201 );
-    }
+    public function destroy($id){}
 }
+?>

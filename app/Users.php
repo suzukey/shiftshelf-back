@@ -16,6 +16,7 @@ class Users extends Authenticatable
     protected $fillable = [
         'username',//ユーザー名
         'icon_url',//ユーザーアイコン
+        'email'//メールアドレス
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -37,7 +38,7 @@ class Users extends Authenticatable
         return $this->hasMany('\App\GroupMembers');//グループメンバー
     }
     public function WishUsers(){
-        return $this->hasMany('\App\WishUsers');//シフト希望ユーザー
+        return $this->hasMany('\App\Wish');//シフト希望
     }
     public function ConfirmUsers(){
         return $this->hasMany('\App\ConfirmUsers');//確定シフトユーザー
