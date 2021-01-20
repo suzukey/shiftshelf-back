@@ -53,4 +53,8 @@ Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
     Route::delete('authority/{id}', 'AuthorityController@destroy');
 // オペレーター権限
     Route::get('operator', 'OperatorController@index');
+// シフト希望
+    Route::get('wish', 'WishController@index');
+    Route::post('wish', 'WishController@store');
+    Route::patch('wish/{id}', 'WishController@update');
 });

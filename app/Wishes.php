@@ -11,11 +11,13 @@ class Wishes extends Model
      */
     protected $fillable = [
         'date',//日時
+        'start_at',//開始時刻
+        'end_at',//終了時刻
     ];
     public function Surveies(){
         return $this->belongsTo('App\Surveies');//外部キー(シフト希望id)
     }
-    public function WishUsers(){
-        return $this->hasMany('\App\WishUsers');//シフト希望ユーザー
+    public function Users(){
+        return $this->belongsTo('App\Users');//外部キー(ユーザーid)
     }
 }
